@@ -172,5 +172,7 @@ Did you have any questions or comments about this deliverable? Please add it to 
 
 ### That's it! You're all done!
 
+Ahh... time to relax!
+
 ![Relax](https://media.giphy.com/media/hR7yR2AMVxv8c/giphy.gif)
 
