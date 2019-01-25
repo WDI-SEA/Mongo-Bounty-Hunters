@@ -2,7 +2,7 @@
 Title: Intergalactic Bounty Hunter Database<br>
 Type: Deliverable<br>
 Duration: 1-2 hours <br>
-Creator: Karolin Rafalski <br>
+Creator: [Karolin Rafalski](https://generalassemb.ly/instructors/karolina-rafalski/11367) <br>
 Adapted From: [WDI Remote - Mongo Lab](https://git.generalassemb.ly/Web-Development-Immersive-Remote/WDIR-Stan-Lee/blob/master/unit_2/w06d02/student_labs/morning.md) <br>
 
 ## Intergalactic Bounty Hunter Database
