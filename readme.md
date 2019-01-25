@@ -1,9 +1,9 @@
-# Mongo Lab
-Title: Intergalactic Bounty Hunter Database - Mongo Lab<br>
-Type: Lab<br>
+# Mongo Bounty Hunters
+Title: Intergalactic Bounty Hunter Database<br>
+Type: Deliverable<br>
 Duration: 1-2 hours <br>
 Creator: Karolin Rafalski <br>
-Adapted From: [WDI Remote materials](https://git.generalassemb.ly/Web-Development-Immersive-Remote/WDIR-Stan-Lee/blob/master/unit_2/w06d02/student_labs/morning.md) <br>
+Adapted From: [WDI Remote - Mongo Lab](https://git.generalassemb.ly/Web-Development-Immersive-Remote/WDIR-Stan-Lee/blob/master/unit_2/w06d02/student_labs/morning.md) <br>
 
 ## Intergalactic Bounty Hunter Database
 
@@ -145,7 +145,7 @@ Update Rocket's ship to be `The Milano 2`
 
 ### Intermediate Mongo
 
-Find the INTERMEDIATE_MONGO.md lecture notes in the instructor notes directory. Follow through each of the explanations. Follow the commands and perform appropriate finds after each update call to see the results
+Check out the [Intermediate Mongo](https://gawdiseattle.gitbooks.io/wdi/04-databases/mongo-intro/intermediate.html) lecture notes in the instructor notes directory. Follow through each of the explanations. Follow the commands and perform appropriate finds after each update call to see the results
 
 - Find the bounties that are greater than `100000`
 - Find the bounties that are less than `1000`
@@ -163,3 +163,14 @@ Find the INTERMEDIATE_MONGO.md lecture notes in the instructor notes directory. 
 - Upserts will insert a value if it doesn't exist, if it does it will update it
 - Try giving a new field of `lastSeen` to Han Solo, with the property `yesterday` set upsert to true
 - Try giving all bounties a new field of `lastSeen` - with a value of `last week` and set upsert to `false`
+
+## Turn It In!
+
+Put your terminal output (let's say the last 50 lines or so, not everything you ever did!) into the file in this directory called `answers.txt`. Commit and push your changes, then make a pull request against the base fork.
+
+Did you have any questions or comments about this deliverable? Please add it to the text of your pull request!
+
+### That's it! You're all done!
+
+![](https://media.giphy.com/media/rl1aX0WUmGcKs/giphy.gif)
+
