@@ -172,5 +172,5 @@ Did you have any questions or comments about this deliverable? Please add it to 
 
 ### That's it! You're all done!
 
-![](https://media.giphy.com/media/rl1aX0WUmGcKs/giphy.gif)
+![Relax](https://media.giphy.com/media/hR7yR2AMVxv8c/giphy.gif)
 
