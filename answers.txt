@@ -1,1 +1,148 @@
-Please replace this text with ~50 lines of terminal history.
+> db.bounties.update({}, { $inc: {reward: 333333}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.bounties.find
+function (query, fields, limit, skip, batchSize, options) {
+    var cursor = new DBQuery(this._mongo,
+                             this._db,
+                             this,
+                             this._fullName,
+                             this._massageObject(query),
+                             fields,
+                             limit,
+                             skip,
+                             batchSize,
+                             options || this.getQueryOptions());
+
+    {
+        const session = this.getDB().getSession();
+
+        const readPreference = session._serverSession.client.getReadPreference(session);
+        if (readPreference !== null) {
+            cursor.readPref(readPreference.mode, readPreference.tags);
+        }
+
+        const readConcern = session._serverSession.client.getReadConcern(session);
+        if (readConcern !== null) {
+            cursor.readConcern(readConcern.level);
+        }
+    }
+
+    return cursor;
+}
+> db.bounties.find()
+{ "_id" : ObjectId("5c4f8b82ec6a6f65eb1659e1"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 1333333, "ship" : "Milleinium Falcon", "hunters" : [ "Bobba Fett", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false }
+{ "_id" : ObjectId("5c4f8bb6ec6a6f65eb1659e2"), "name" : "Rocket", "wantedFor" : "Stealing Batteries", "client" : "Ayesha High Priestess of the Sovereign", "reward" : 1000000000, "ship" : "The Milano", "hunters" : [ "Nebula", "Ravagers" ], "captured" : false }
+{ "_id" : ObjectId("5c4f8bb6ec6a6f65eb1659e3"), "name" : "Sara Lance", "wantedFor" : "Screwing up the timeline, causing anachronisms", "client" : "Time Bureau", "reward" : 50000, "ship" : "Waverider", "hunters" : [ "Chronos" ], "captured" : false }
+{ "_id" : ObjectId("5c4f8bb6ec6a6f65eb1659e4"), "name" : "Malcolm Reynolds", "wantedFor" : "Aiming to misbehave", "client" : "The Alliance", "reward" : 40000, "ship" : "Serenity", "hunters" : [ "Jubal Early" ], "captured" : false }
+{ "_id" : ObjectId("5c4f8bd1ec6a6f65eb1659e6"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 1000000, "ship" : "Milleinium Falcon", "hunters" : [ "Bobba Fett", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false }
+{ "_id" : ObjectId("5c4f8d12ec6a6f65eb1659e7"), "name" : "Anton Walker", "wantedFor" : "Smuggling people for Aria Walker", "client" : "FBI", "reward" : 0, "ship" : "Alitalia flight", "hunters" : [ "Alexandra Broden" ], "captured" : false }
+> db.bounties.update({}, { $inc: {reward: -333333}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.bounties.update({}, {$mul: { $inc: {reward: -333333}}})
+WriteResult({
+	"nMatched" : 0,
+	"nUpserted" : 0,
+	"nModified" : 0,
+	"writeError" : {
+		"code" : 14,
+		"errmsg" : "Cannot multiply with non-numeric argument: {$inc: { reward: -333333.0 }}"
+	}
+})
+> db.bounties.update({}, { $inc: {reward: 333333}},{multi: true})
+WriteResult({ "nMatched" : 6, "nUpserted" : 0, "nModified" : 6 })
+> db.bounties.update({}, { $mul: {reward: 2}},{multi: true})
+WriteResult({ "nMatched" : 6, "nUpserted" : 0, "nModified" : 6 })
+> db.bounties.update({name: "Malcolm Reynolds"}, {$push: {hunters: "Boba Fett" }})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.bounties.update({name: "Malcolm Reynol
+[1]+  Stopped                 mongo
+~/wdi/Mongo-Bounty-Hunters:master$ mongo
+MongoDB shell version v3.6.3
+connecting to: mongodb://127.0.0.1:27017
+MongoDB server version: 3.6.3
+Server has startup warnings: 
+2019-01-25T13:50:05.194-0800 I STORAGE  [initandlisten] 
+2019-01-25T13:50:05.194-0800 I STORAGE  [initandlisten] ** WARNING: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine
+2019-01-25T13:50:05.194-0800 I STORAGE  [initandlisten] **          See http://dochub.mongodb.org/core/prodnotes-filesystem
+2019-01-25T13:50:06.236-0800 I CONTROL  [initandlisten] 
+2019-01-25T13:50:06.236-0800 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+2019-01-25T13:50:06.236-0800 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+2019-01-25T13:50:06.236-0800 I CONTROL  [initandlisten] 
+> show dbs
+admin      0.000GB
+config     0.000GB
+hunters    0.000GB
+local      0.000GB
+myDB       0.000GB
+nodetest1  0.000GB
+snake_bnb  0.000GB
+> use hunters
+switched to db hunters
+> show collections
+bounties
+> db.bounties.find({name: "Malcolm Reynolds"})
+{ "_id" : ObjectId("5c4f8bb6ec6a6f65eb1659e4"), "name" : "Malcolm Reynolds", "wantedFor" : "Aiming to misbehave", "client" : "The Alliance", "reward" : 746666, "ship" : "Serenity", "hunters" : [ "Jubal Early", "Boba Fett" ], "captured" : false }
+> db.bounties.update({ship: "Waverider}, {$push: {hunters: "Boba Fett"}})
+2019-01-28T15:48:09.215-0800 E QUERY    [thread1] SyntaxError: missing } after property list @(shell):1:58
+> db.bounties.update({ship: "Waverider"}, {$push: {hunters: "Boba Fett"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.bounties.find({hunters: {$elemMatch: "Dengar"}})
+Error: error: {
+	"ok" : 0,
+	"errmsg" : "$elemMatch needs an Object",
+	"code" : 2,
+	"codeName" : "BadValue"
+}
+> db.bounties.find({hunters: {$elemMatch: {"Dengar"}}})
+2019-01-28T15:52:35.778-0800 E QUERY    [thread1] SyntaxError: missing : after property id @(shell):1:49
+> db.bounties.find({hunters:"Dengar"}})
+2019-01-28T15:54:53.615-0800 E QUERY    [thread1] SyntaxError: missing ) after argument list @(shell):1:35
+> db.bounties.find({hunters:"Dengar"})
+{ "_id" : ObjectId("5c4f8b82ec6a6f65eb1659e1"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 2666666, "ship" : "Milleinium Falcon", "hunters" : [ "Bobba Fett", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false }
+{ "_id" : ObjectId("5c4f8bd1ec6a6f65eb1659e6"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 2666666, "ship" : "Milleinium Falcon", "hunters" : [ "Bobba Fett", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false }
+> db.bounties.update({}, {$pull: {hunters:"Dengar"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.bounties.find({hunters:"Dengar"})
+{ "_id" : ObjectId("5c4f8bd1ec6a6f65eb1659e6"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 2666666, "ship" : "Milleinium Falcon", "hunters" : [ "Bobba Fett", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false }
+> db.bounties.update({}, {$pull: {hunters:"Dengar"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 0 })
+> db.bounties.update({}, {$pull: {hunters:"Dengar"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 0 })
+> db.bounties.find({hunters:"Dengar"})
+{ "_id" : ObjectId("5c4f8bd1ec6a6f65eb1659e6"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 2666666, "ship" : "Milleinium Falcon", "hunters" : [ "Bobba Fett", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false }
+> db.bounties.update({}, {$pull: {hunters:"Dengar"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 0 })
+> db.bounties.update({}, {$pull: {hunters:"Dengar"}})
+\WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 0 })
+> db.bounties.update({}, {$pull: {hunters:"Dengar"}}, {multi: true})
+WriteResult({ "nMatched" : 6, "nUpserted" : 0, "nModified" : 1 })
+> db.bounties.find({hunters:"Dengar"})
+> db.bounties.update( {name: "Han Solo"}, {lastSeen: "Yesterday"}, {upsert: true})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.bounties.find({name: "Han Solo"})
+{ "_id" : ObjectId("5c4f8bd1ec6a6f65eb1659e6"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 2666666, "ship" : "Milleinium Falcon", "hunters" : [ "Bobba Fett", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false }
+> db.bounties.find({$set: {name: "Han Solo"}})
+Error: error: {
+	"ok" : 0,
+	"errmsg" : "unknown top level operator: $set",
+	"code" : 2,
+	"codeName" : "BadValue"
+}
+> db.bounties.update( {name: "Han Solo"}, {$set: {lastSeen: "Yesterday"}}, {upsert: true})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.bounties.update( {}, {$set: {lastSeen: "last week"}}, {upsert: true}, {multi: true})
+2019-01-28T16:08:39.229-0800 E QUERY    [thread1] Error: Fourth argument must be empty when specifying upsert and multi with an object. :
+DBCollection.prototype._parseUpdate@src/mongo/shell/collection.js:451:1
+DBCollection.prototype.update@src/mongo/shell/collection.js:483:18
+@(shell):1:1
+> db.bounties.update( {}, {$set: {lastSeen: "last week"}}, {upsert: true, multi: true})
+WriteResult({ "nMatched" : 6, "nUpserted" : 0, "nModified" : 6 })
+> db.bounties.find()
+{ "_id" : ObjectId("5c4f8b82ec6a6f65eb1659e1"), "lastSeen" : "last week" }
+{ "_id" : ObjectId("5c4f8bb6ec6a6f65eb1659e2"), "name" : "Rocket", "wantedFor" : "Stealing Batteries", "client" : "Ayesha High Priestess of the Sovereign", "reward" : 2000666666, "ship" : "The Milano", "hunters" : [ "Nebula", "Ravagers" ], "captured" : false, "lastSeen" : "last week" }
+{ "_id" : ObjectId("5c4f8bb6ec6a6f65eb1659e3"), "name" : "Sara Lance", "wantedFor" : "Screwing up the timeline, causing anachronisms", "client" : "Time Bureau", "reward" : 766666, "ship" : "Waverider", "hunters" : [ "Chronos", "Boba Fett" ], "captured" : false, "lastSeen" : "last week" }
+{ "_id" : ObjectId("5c4f8bb6ec6a6f65eb1659e4"), "name" : "Malcolm Reynolds", "wantedFor" : "Aiming to misbehave", "client" : "The Alliance", "reward" : 746666, "ship" : "Serenity", "hunters" : [ "Jubal Early", "Boba Fett" ], "captured" : false, "lastSeen" : "last week" }
+{ "_id" : ObjectId("5c4f8bd1ec6a6f65eb1659e6"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 2666666, "ship" : "Milleinium Falcon", "hunters" : [ "Bobba Fett", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false, "lastSeen" : "last week" }
+{ "_id" : ObjectId("5c4f8d12ec6a6f65eb1659e7"), "name" : "Anton Walker", "wantedFor" : "Smuggling people for Aria Walker", "client" : "FBI", "reward" : 666666, "ship" : "Alitalia flight", "hunters" : [ "Alexandra Broden" ], "captured" : false, "lastSeen" : "last week" }
+> 
+
