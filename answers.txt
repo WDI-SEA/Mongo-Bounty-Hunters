@@ -1,1 +1,49 @@
 Please replace this text with ~50 lines of terminal history.
+
+use hunters
+db.createCollection('bounties')
+db.bounties.insert( { name: 'Han Solo', wantedFor : 'Owing money', client : 'Jabba the Hut', reward : 1000000, ship : 'Millennium Falcon', hunters : ['Bobba Fett', 'Dengar', 'IG-88', 'Zuckuss', 'Greedo', 'Bossk', '4-LOM'], captured : false } )
+db.bounties.insert([   {     name: 'Rocket',     wantedFor : 'Stealing Batteries',     client : 'Ayesha High Priestess of the Sovereign',     reward : 1000000000,     ship: 'The Milano',     hunters :['Nebula', 'Ravagers'],     captured: false   },   {     name: 'Sara Lance',     wantedFor : 'Screwing up the timeline, causing anachronisms',     client : 'Time Bureau',     reward : 50000,     ship: 'Waverider',     hunters :['Chronos'],     captured: false   },   {     name: 'Malcolm Reynolds',     wantedFor : 'Aiming to misbehave',     client : 'The Alliance',     reward : 40000,     ship: 'Serenity',     hunters :['Jubal Early'],     captured: false   },   {     name: 'Starbuck',     wantedFor : "Disobeying Captain's orders",     client : 'Captain Adama',     ship: 'Demetrius',     reward : 1000,     hunters :['Apollo'],     captured: true   } ])
+
+
+db.bounties.insert({
+  name: 'Someone',
+  client: 'Parker',
+  reward: 10,
+})
+
+db.bounties.find({})
+db.bounties.find({client: 'Time Bureau'})
+db.bounties.find({captured: true})
+db.bounties.find({client: 'Parker'})
+db.bounties.find({}, {_id: 0, name: 1})
+db.find({name: 'Han Solo'})
+db.bounties.remove({name: 'Han Solo'}, {justOne: true})
+
+db.bounties.find({reward: {$gt: 100000}})
+db.bounties.find({reward: {$lt: 1000}})
+db.bounties.find({reward: {$lte: 1000}})
+
+db.bounties.find({hunters: 'Nebula'})
+db.bounties.find({ $or: [{ship: 'Waverider'},{ship: 'Serenity'}]})
+db.bounties.find({captured: false, client: 'Ayesha High Priestess of the Sovereign'})
+
+db.bounties.updateMany({}, {$inc: {reward: 333333}})
+db.bounties.updateMany({}, {$mul: {reward: 2}})
+db.bounties.update({name: 'Malcolm Reynolds'},{$push: {hunters: 'Bobba Fett'}})
+db.bounties.update({ship: 'Waverider'},{$push: {hunters: 'Bobba Fett'}})
+
+db.bounties.updateMany({hunters: 'Dengar'},{$pull: {hunters: 'Dengar'}})
+
+
+db.bounties.update({name: 'Han Solo'},{$set: {lastSeen: 'yesterday'}},{upsert: true})
+
+db.bounties.updateMany({}, {$set: {lastSeen: 'yesterday'}}, {upsert: false})
+
+
+
+
+
+
+
+
