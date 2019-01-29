@@ -1,1 +1,35 @@
 Please replace this text with ~50 lines of terminal history.
+
+> db.bounties.insert({name: "The Paladins of Voltron", wantedFor: "Daring to oppose the Galra Empire", client: "Emperor Zarkon", reward: "Honor", ship: "Voltron", hunters: ["Lotor", "Sendak", "Prorok", "Branko", "Morvok", "Ladnok", "Trugg"], captured: false })
+
+> db.bounties.find()
+> db.bounties.find({ client: "Time Bureau" })
+> db.bounties.find({ captured: true })
+> db.bounties.find({ hunters: "Sendak" })
+> db.bounties.find({}, {name: 1, _id: 0})
+
+> db.bounties.remove({ name: "Starbuck" })
+> db.bounties.remove({ name: "Han Solo" }, { justOne: true })
+
+> db.bounties.update({ name: "Sara Lance" }, { $set: { name: "White Canary" } })
+> db.bounties.update( {name: "Rocket"}, {$set: {ship: "Milano 2"}})
+
+
+> db.bounties.find({ reward: {$gt: 100000} })
+> db.bounties.find({ reward: {$lt: 1000} })
+> db.bounties.find({ reward: {$lte: 1000} })
+> db.bounties.find({ hunter: "Nebula" })
+> db.bounties.find({ $or: [{ship: "Waverider"}, {ship: "Serenity"}] })
+> db.bounties.find({ captured: false, client: 'Ayesha High Priestess of the Sovereign' })
+> db.bounties.update({}, { $inc: { reward: 333333 }, { multi: true } })
+
+2019-01-28T17:36:06.592-0800 E QUERY    [js] SyntaxError: invalid property id @(shell):1:51
+> db.bounties.update({}, { $inc: { reward: 333333 } }, { multi: true }})
+2019-01-28T17:37:51.187-0800 E QUERY    [js] SyntaxError: missing ) after argument list @(shell):1:68
+> db.bounties.update({}, { $inc: { reward: 333333 } }, { multi: true })
+> db.bounties.update({}, { $mul: { reward: (2) } }, { multi: true })
+> db.bounties.update( {name: "Malcolm Reynolds"}, { $push: {hunters: "Bobba Fett"} } )
+> db.bounties.update( {ship: "Waverider"}, { $push: {hunters: "Bobba Fett"} } )
+> db.bounties.updateMany({ hunters: "Dengar" }, { $pull: { hunters: "Dengar" } } )
+> db.bounties.updateMany({ name: "Han Solo" }, { $set {lastSeen: "yesterday"} }, { upsert: false })
+> db.bounties.updateMany({}, { $set {lastSeen: "last week"} }, { upsert: false })
