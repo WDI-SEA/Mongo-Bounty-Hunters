@@ -168,6 +168,8 @@ Check out the [Intermediate Mongo](https://gawdiseattle.gitbooks.io/wdi/04-datab
 
 Put your terminal output (let's say the last 50 lines or so, not everything you ever did!) into the file in this directory called `answers.txt`. Commit and push your changes, then make a pull request against the base fork.
 
+Get your Mongo shell history with the following command: `cat ~/.dbshell`
+
 Did you have any questions or comments about this deliverable? Please add it to the text of your pull request!
 
 ### That's it! You're all done!
