@@ -1,1 +1,32 @@
 Please replace this text with ~50 lines of terminal history.
+
+
+Find:
+db.bounties.find()
+db.bounties.find({client: "Time Bureau"})
+db.bounties.find({captured: true})
+db.bounties.find({name: "IG88"})
+db.bounties.find({}, {name: 1}) - returns all items and only the name property
+
+
+Remove:
+db.bounties.remove({name: "Starbuck"})
+db.bounties.deleteOne({name: "Han Solo"})
+
+Update:
+db.bounties.update({name:"Sara Lance"},{$set: {name: "White Canary"} } )
+db.bounties.update({name: "Rocket"}, {$set: {ship: "The Milano 2"} } )
+
+Intermediate:
+db.bounties.find({reward: {$gt:100000}})
+db.bounties.find({reward: {$lt:1000}})
+db.bounties.find({reward: {$lte:1000}})
+db.bounties.find({hunters: "Nebula"})
+db.bounties.find({$or: [{ship: "Waverider"}, {ship: "Serenity"}]})
+db.bounties.find({captured: false, client: "Ayesha High Priestess of the Sovereign"})
+db.bounties.update({}, {$inc: {reward: 333333}}, {multi: true})
+db.bounties.update({}, {$mul: {reward: (2)}}, {multi: true})
+db.bounties.update({name: "Malcolm Reynolds"},{$push: {hunters: "Bobba Fett"}})
+db.bounties.update({ship: "Waverider"},{$push: {hunters: "Bobba Fett"}})
+db.bounties.update({}, {$pull: {hunters: "Dengar"}})
+db.bounties.updateMany({}, {$set: {lastseen: "Last Week"}}, {upsert: true})
