@@ -1,1 +1,19 @@
-Please replace this text with ~50 lines of terminal history.
+db.bounties.deleteOne({name: 'Han Solo'})
+
+db.bounties.update({name: 'Sara Lance'}, { $set: {name: 'White Canary'}})
+
+db.bounties.update({name: 'Rocket'}, { $set: {ship: 'The Milano 2'}})
+
+db.bounties.find({reward: {$gt: 100000}}).pretty()
+
+db.bounties.find({reward: {$lt: 10000}}).pretty()
+
+db.bounties.find({reward: {$lte: 1000}}).pretty()
+
+db.bounties.find(hunters: 'Nebula')
+
+db.bounties.update({}, { $inc: {reward: 333333} }, {multi: true});
+
+db.bounties.update({name: 'Malcolm Reynolds'}, {$push: {hunters: 'Bobba Fett'}})
+
+db.bounties.update({hunters: 'Dengar'}, { $pull: { hunters: 'Dengar' }})
