@@ -145,7 +145,7 @@ Update Rocket's ship to be `The Milano 2`
 
 ### Intermediate Mongo
 
-Check out the [Intermediate Mongo](https://gawdiseattle.gitbooks.io/wdi/04-databases/mongo-intro/intermediate.html) lecture notes in the instructor notes directory. Follow through each of the explanations. Follow the commands and perform appropriate finds after each update call to see the results
+Check out the [Intermediate Mongo](https://gawdiseattle.gitbook.io/wdi/04-databases/mongo-intro/intermediate) lecture notes in the instructor notes directory. Follow through each of the explanations. Follow the commands and perform appropriate finds after each update call to see the results
 
 - Find the bounties that are greater than `100000`
 - Find the bounties that are less than `1000`
