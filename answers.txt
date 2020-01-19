@@ -1,1 +1,30 @@
-Please replace this text with ~50 lines of terminal history.
+//Read
+db.bounties.find()
+db.bounties.find({client: "Time Bureau"})
+db.bounties.find({captured: true})
+
+db.bounties.find({}, {_id: 0, name: 1})
+
+//Remove
+db.bounties.remove({name: "Starbuck"})
+db.bounties.find({name: "Han Solo"})
+    db.bounties.remove({_id: ObjectId("5e249c2a46f3496ed92f3095")})
+
+//Update
+db.bounties.update({name: "Sara Lance"}, {$set: {name: "White Canary"}})
+db.bounties.update({ship: "The Milano"}, {$set: {ship: "The Milano 2"}})
+
+//Intermediate MongoDB
+db.bounties.find({reward: {$gt: 100000}})
+db.bounties.find({reward: {$lt: 1000}})
+db.bounties.find({reward: {$lte: 1000}})
+db.bounties.find({hunters: "Nebula"})
+db.bounties.find({ship: {$in: ["Waverider", "Serenity"]}})
+db.bounties.find({captured: false, client: "Ayesha High Priestess of the Sovereign"})
+db.bounties.update({}, {$inc: {reward: 333333}}, {multi: true})
+db.bounties.update({}, {$mul: {reward: 2}}, {multi: true})
+db.bounties.update({name: "Malcolm Reynolds"}, {$addToSet: {"hunters":"Boba Fett"}})
+db.bounties.update({ship: "Waverider"}, {$addToSet: {"hunters":"Boba Fett"}})
+db.bounties.update({}, {$pull: {"hunters": "Dengar"}})
+db.bounties.update({"name":"Han Solo"}, {$set: {"lastSeen":"last week"}}, {upsert:true})
+db.bounties.update({}, {$set: {"lastSeen":"last week"}}, false,  true)
