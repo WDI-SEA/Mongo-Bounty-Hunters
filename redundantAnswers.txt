@@ -1,0 +1,88 @@
+These are the answers that I didn't realize that I would not need, but being that I put the time into putting them here,
+I thought it a waste to simply toss them to the wayside. So here's the file containing all the redundant answers.
+
+> db.bounties.find()
+
+> db.bounties.find( { client: 'Time Bureau'} )
+returns...
+{ 
+    "_id" : ObjectId("5e24acc57f16cb66ee407db6"),
+    "name" : "Sara Lance", 
+    "wantedFor" : "Screwing up the timeline, causing anachronisms", 
+    "client" : "Time Bureau", 
+    "reward" : 50000, 
+    "ship" : "Waverider", 
+    "hunters" : [ "Chronos" ], 
+    "captured" : false 
+}
+
+> db.bounties.find( { captured: true } )
+returns...
+{ 
+    "_id" : ObjectId("5e24acc57f16cb66ee407db8"), 
+    "name" : "Starbuck", 
+    "wantedFor" : "Disobeying Captain's orders", 
+    "client" : "Captain Adama", 
+    "ship" : "Demetrius", 
+    "reward" : 1000, 
+    "hunters" : [ "Apollo" ], 
+    "captured" : true 
+}
+
+> db.bounties.find( { hunters : "Noah of the Pit" })
+returns...
+{ 
+    "_id" : ObjectId("5e24abc17f16cb66ee407db4"), 
+    "name" : "Oscar de la Gato", 
+    "wantedFor" : "Scratching the hell out of a couch", 
+    "client" : "Nick Quantum", 
+    "reward" : 15, 
+    "ship" : "Stolen DogBed", 
+    "hunters" : [
+         "Noah of the Pit", 
+         "Big crows that hang out outside our house", 
+         "Teddy Long-snout", 
+         "White-hot Pep" 
+         ], 
+    "captured" : false 
+}
+
+> db.bounties.find( {}, {name: 1} )
+returns...
+{ "_id" : ObjectId("5e24a6e4ed7f4dfbf9d82b78"), "name" : "Han Solo" }
+{ "_id" : ObjectId("5e24abc17f16cb66ee407db4"), "name" : "Oscar de la Gato" }
+{ "_id" : ObjectId("5e24aca57f16cb66ee407db5"), "name" : "Rocket" }
+{ "_id" : ObjectId("5e24acc57f16cb66ee407db6"), "name" : "Sara Lance" }
+{ "_id" : ObjectId("5e24acc57f16cb66ee407db7"), "name" : "Malcolm Reynolds" }
+{ "_id" : ObjectId("5e24acc57f16cb66ee407db8"), "name" : "Starbuck" }
+
+> db.bounties.deleteOne( {name: "Starbuck"} )
+returns...
+{ "acknowledged" : true, "deletedCount" : 1 }
+
+>db.bounties.deleteOne( {name: "Han Solo"} )
+
+> db.bounties.updateOne( {name: "Sara Lance" }, {$set: {name: "White Canary"}})
+returns...
+{ "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+
+then to prove it...
+> db.bounties.find( {name: "White Canary" })
+returns...
+{ 
+    "_id" : ObjectId("5e24acc57f16cb66ee407db6"), 
+    "name" : "White Canary", 
+    "wantedFor" : "Screwing up the timeline, causing anachronisms", 
+    "client" : "Time Bureau", 
+    "reward" : 50000, 
+    "ship" : "Waverider", 
+    "hunters" : [ "Chronos" ], 
+    "captured" : false 
+}
+
+
+
+> db.bounties.updateOne( {name: "Rocket" }, {$set: {ship: "Milano 2"}})
+returns...
+{ "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+proved...

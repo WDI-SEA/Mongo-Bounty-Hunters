@@ -1,1 +1,52 @@
-Please replace this text with ~50 lines of terminal history.
+
+> db.bounties.find( {name: "Rocket"} )
+{
+    "_id" : ObjectId("5e24aca57f16cb66ee407db5"), 
+    "name" : "Rocket", 
+    "wantedFor" : "Stealing Batteries", 
+    "client" : "Ayesha High Priestess of the Sovereign", 
+    "reward" : 1000000000, 
+    "ship" : "Milano 2", 
+    "hunters" : [
+        "Nebula", 
+        "Ravagers" 
+        ], 
+    "captured" : false 
+}
+
+> db.bounties.find( {reward : {$gt: 100000}})
+returns...
+    Han Solo & Rocket, this is starting to get lengthy so I'll try to keep answers brief.
+
+> db.bounties.find( {reward : {$lt: 1000 }})
+returns...
+    Oscar de la Gato
+
+> db.bounties.find( {reward : {$lte: 1000 }})
+returns...
+    Oscar de la Gato
+
+> db.bounties.find({hunters: "Nebula"})
+returns...
+    Rocket
+
+> db.bounties.find({$or: [ {ship: "Waverunner" }, {ship: "Serenity"} ]})
+
+> db.bounties.find({captured: false, client: "Ayesha High Priestess of the Sovereign"})
+returns...
+    Rocket
+
+> db.bounties.update({}, {$inc: {reward: 333333} }, {multi: true})
+
+> db.bounties.update({}, {$mul: {reward: 1/2} }, {multi: true})
+
+> db.bounties.update({name: "Malcolm Reynolds"}, {$push: {hunters: "Bobba Fett"}})
+
+> db.bounties.update({ship: "Waverider"}, {$push: {hunters: "Bobba Fett"}})
+
+> db.bounties.update({name: "Han Solo"}, {$pull : {hunters: "Dengar"}})
+
+> db.bounties.update({name: "Han Solo"}, {lastSeen: "Yesterday"}, {upsert: true})
+
+> db.bounties.update({}, {lastSeen: "Last Week"}, {upsert: false})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
