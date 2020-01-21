@@ -1,1 +1,80 @@
-Please replace this text with ~50 lines of terminal history.
+> db.bounties.update(   { hunters: "Dengar" },   { $pull: {     hunters: "Dengar"     }   } )
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.bounties.find({hunters: "Dengar"}, { hunters: 1 } )
+> db.bounties.update( { name: "Han Solo" }, { lastSeen: "yesterday" }, { upsert: true } )
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.bounties.find()
+{ "_id" : ObjectId("5e26832ba83b59c21a8696a4"), "lastSeen" : "yesterday" }
+{ "_id" : ObjectId("5e268370a83b59c21a8696a5"), "name" : "Rocket", "wantedFor" : "Stealing Batteries", "client" : "Ayesha High Priestess of the Sovereign", "reward" : 2000666666, "ship" : "The Milano 2", "hunters" : [ "Nebula", "Ravagers" ], "captured" : false }
+{ "_id" : ObjectId("5e268370a83b59c21a8696a6"), "name" : "White Canary", "wantedFor" : "Screwing up the timeline, causing anachronisms", "client" : "Time Bureau", "reward" : 766666, "ship" : "Waverider", "hunters" : [ "Chronos", "Bobba Fett" ], "captured" : false }
+{ "_id" : ObjectId("5e268370a83b59c21a8696a7"), "name" : "Malcolm Reynolds", "wantedFor" : "Aiming to misbehave", "client" : "The Alliance", "reward" : 746666, "ship" : "Serenity", "hunters" : [ "Jubal Early", "Bobba Fett" ], "captured" : false }
+{ "_id" : ObjectId("5e2685a9a83b59c21a8696a9"), "name" : "Shannon Zylstra", "wantedFor" : "Tardiness to class", "client" : "Tardy Tsar", "ship" : "The Absentia", "reared" : 28000, "reward" : 722666, "hunters" : [ "Father Time" ], "captured" : true }
+> db.bounties.remove( { name: "Han Solo" } )
+WriteResult({ "nRemoved" : 0 })
+> db.bounties.remove( { lastSeen: "yesterday" } )
+WriteResult({ "nRemoved" : 1 })
+> db.bounties.find()
+{ "_id" : ObjectId("5e268370a83b59c21a8696a5"), "name" : "Rocket", "wantedFor" : "Stealing Batteries", "client" : "Ayesha High Priestess of the Sovereign", "reward" : 2000666666, "ship" : "The Milano 2", "hunters" : [ "Nebula", "Ravagers" ], "captured" : false }
+{ "_id" : ObjectId("5e268370a83b59c21a8696a6"), "name" : "White Canary", "wantedFor" : "Screwing up the timeline, causing anachronisms", "client" : "Time Bureau", "reward" : 766666, "ship" : "Waverider", "hunters" : [ "Chronos", "Bobba Fett" ], "captured" : false }
+{ "_id" : ObjectId("5e268370a83b59c21a8696a7"), "name" : "Malcolm Reynolds", "wantedFor" : "Aiming to misbehave", "client" : "The Alliance", "reward" : 746666, "ship" : "Serenity", "hunters" : [ "Jubal Early", "Bobba Fett" ], "captured" : false }
+{ "_id" : ObjectId("5e2685a9a83b59c21a8696a9"), "name" : "Shannon Zylstra", "wantedFor" : "Tardiness to class", "client" : "Tardy Tsar", "ship" : "The Absentia", "reared" : 28000, "reward" : 722666, "hunters" : [ "Father Time" ], "captured" : true }
+> db.bounties.insert(
+...   {
+...     name: 'Han Solo',
+...     wantedFor : 'Owing money',
+...     client : 'Jabba the Hut',
+...     reward : 1000000,
+...     ship: 'Millennium Falcon',
+...     hunters :['Bobba Fett', 'Dengar', 'IG-88', 'Zuckuss', 'Greedo', 'Bossk', '4-LOM'],
+...     captured: false
+...   }
+...   )
+WriteResult({ "nInserted" : 1 })
+> db.bounties.update( { name: "Han Solo" }, { $inc: { lastSeen: "yesterday" } }, { upsert: true } )
+WriteResult({
+	"nMatched" : 0,
+	"nUpserted" : 0,
+	"nModified" : 0,
+	"writeError" : {
+		"code" : 14,
+		"errmsg" : "Cannot increment with non-numeric argument: {lastSeen: \"yesterday\"}"
+	}
+})
+> db.bounties.update( { name: "Han Solo" }, { $push: { lastSeen: "yesterday" } }, { upsert: true } )
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.bounties.find()
+{ "_id" : ObjectId("5e268370a83b59c21a8696a5"), "name" : "Rocket", "wantedFor" : "Stealing Batteries", "client" : "Ayesha High Priestess of the Sovereign", "reward" : 2000666666, "ship" : "The Milano 2", "hunters" : [ "Nebula", "Ravagers" ], "captured" : false }
+{ "_id" : ObjectId("5e268370a83b59c21a8696a6"), "name" : "White Canary", "wantedFor" : "Screwing up the timeline, causing anachronisms", "client" : "Time Bureau", "reward" : 766666, "ship" : "Waverider", "hunters" : [ "Chronos", "Bobba Fett" ], "captured" : false }
+{ "_id" : ObjectId("5e268370a83b59c21a8696a7"), "name" : "Malcolm Reynolds", "wantedFor" : "Aiming to misbehave", "client" : "The Alliance", "reward" : 746666, "ship" : "Serenity", "hunters" : [ "Jubal Early", "Bobba Fett" ], "captured" : false }
+{ "_id" : ObjectId("5e2685a9a83b59c21a8696a9"), "name" : "Shannon Zylstra", "wantedFor" : "Tardiness to class", "client" : "Tardy Tsar", "ship" : "The Absentia", "reared" : 28000, "reward" : 722666, "hunters" : [ "Father Time" ], "captured" : true }
+{ "_id" : ObjectId("5e269032a83b59c21a8696ab"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 1000000, "ship" : "Millennium Falcon", "hunters" : [ "Bobba Fett", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false, "lastSeen" : [ "yesterday" ] }
+> db.bounties.update( { name: "Han Solo" }, { $unset: { lastSeen: "" } } )
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.bounties.find()
+{ "_id" : ObjectId("5e268370a83b59c21a8696a5"), "name" : "Rocket", "wantedFor" : "Stealing Batteries", "client" : "Ayesha High Priestess of the Sovereign", "reward" : 2000666666, "ship" : "The Milano 2", "hunters" : [ "Nebula", "Ravagers" ], "captured" : false }
+{ "_id" : ObjectId("5e268370a83b59c21a8696a6"), "name" : "White Canary", "wantedFor" : "Screwing up the timeline, causing anachronisms", "client" : "Time Bureau", "reward" : 766666, "ship" : "Waverider", "hunters" : [ "Chronos", "Bobba Fett" ], "captured" : false }
+{ "_id" : ObjectId("5e268370a83b59c21a8696a7"), "name" : "Malcolm Reynolds", "wantedFor" : "Aiming to misbehave", "client" : "The Alliance", "reward" : 746666, "ship" : "Serenity", "hunters" : [ "Jubal Early", "Bobba Fett" ], "captured" : false }
+{ "_id" : ObjectId("5e2685a9a83b59c21a8696a9"), "name" : "Shannon Zylstra", "wantedFor" : "Tardiness to class", "client" : "Tardy Tsar", "ship" : "The Absentia", "reared" : 28000, "reward" : 722666, "hunters" : [ "Father Time" ], "captured" : true }
+{ "_id" : ObjectId("5e269032a83b59c21a8696ab"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 1000000, "ship" : "Millennium Falcon", "hunters" : [ "Bobba Fett", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false }
+> db.bounties.update( { name: "Han Solo" }, { $set: { lastSeen: "yesterday" } }, { upsert: true } )
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.bounties.find()
+{ "_id" : ObjectId("5e268370a83b59c21a8696a5"), "name" : "Rocket", "wantedFor" : "Stealing Batteries", "client" : "Ayesha High Priestess of the Sovereign", "reward" : 2000666666, "ship" : "The Milano 2", "hunters" : [ "Nebula", "Ravagers" ], "captured" : false }
+{ "_id" : ObjectId("5e268370a83b59c21a8696a6"), "name" : "White Canary", "wantedFor" : "Screwing up the timeline, causing anachronisms", "client" : "Time Bureau", "reward" : 766666, "ship" : "Waverider", "hunters" : [ "Chronos", "Bobba Fett" ], "captured" : false }
+{ "_id" : ObjectId("5e268370a83b59c21a8696a7"), "name" : "Malcolm Reynolds", "wantedFor" : "Aiming to misbehave", "client" : "The Alliance", "reward" : 746666, "ship" : "Serenity", "hunters" : [ "Jubal Early", "Bobba Fett" ], "captured" : false }
+{ "_id" : ObjectId("5e2685a9a83b59c21a8696a9"), "name" : "Shannon Zylstra", "wantedFor" : "Tardiness to class", "client" : "Tardy Tsar", "ship" : "The Absentia", "reared" : 28000, "reward" : 722666, "hunters" : [ "Father Time" ], "captured" : true }
+{ "_id" : ObjectId("5e269032a83b59c21a8696ab"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 1000000, "ship" : "Millennium Falcon", "hunters" : [ "Bobba Fett", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false, "lastSeen" : "yesterday" }
+> db.bounties.update( {}, { $set: { lastSeen: "last week" } }, { upsert: false }, { multi: true } )
+2020-01-20T21:53:56.291-0800 E  QUERY    [js] uncaught exception: Error: Fourth argument must be empty when specifying upsert and multi with an object. :
+DBCollection.prototype._parseUpdate@src/mongo/shell/collection.js:456:19
+DBCollection.prototype.update@src/mongo/shell/collection.js:492:18
+@(shell):1:1
+> db.bounties.update( {}, { $set: { lastSeen: "last week" } }, { upsert: false, multi: true } )
+WriteResult({ "nMatched" : 5, "nUpserted" : 0, "nModified" : 5 })
+> db.bounties.find()
+{ "_id" : ObjectId("5e268370a83b59c21a8696a5"), "name" : "Rocket", "wantedFor" : "Stealing Batteries", "client" : "Ayesha High Priestess of the Sovereign", "reward" : 2000666666, "ship" : "The Milano 2", "hunters" : [ "Nebula", "Ravagers" ], "captured" : false, "lastSeen" : "last week" }
+{ "_id" : ObjectId("5e268370a83b59c21a8696a6"), "name" : "White Canary", "wantedFor" : "Screwing up the timeline, causing anachronisms", "client" : "Time Bureau", "reward" : 766666, "ship" : "Waverider", "hunters" : [ "Chronos", "Bobba Fett" ], "captured" : false, "lastSeen" : "last week" }
+{ "_id" : ObjectId("5e268370a83b59c21a8696a7"), "name" : "Malcolm Reynolds", "wantedFor" : "Aiming to misbehave", "client" : "The Alliance", "reward" : 746666, "ship" : "Serenity", "hunters" : [ "Jubal Early", "Bobba Fett" ], "captured" : false, "lastSeen" : "last week" }
+{ "_id" : ObjectId("5e2685a9a83b59c21a8696a9"), "name" : "Shannon Zylstra", "wantedFor" : "Tardiness to class", "client" : "Tardy Tsar", "ship" : "The Absentia", "reared" : 28000, "reward" : 722666, "hunters" : [ "Father Time" ], "captured" : true, "lastSeen" : "last week" }
+{ "_id" : ObjectId("5e269032a83b59c21a8696ab"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 1000000, "ship" : "Millennium Falcon", "hunters" : [ "Bobba Fett", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false, "lastSeen" : "last week" }
+>
