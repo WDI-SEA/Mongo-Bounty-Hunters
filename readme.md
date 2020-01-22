@@ -145,7 +145,7 @@ Update Rocket's ship to be `The Milano 2`
 
 ### Intermediate Mongo
 
-Check out the [Intermediate Mongo](https://gawdiseattle.gitbook.io/wdi/04-databases/mongo-intro/intermediate) lecture notes in the instructor notes directory. Follow through each of the explanations. Follow the commands and perform appropriate finds after each update call to see the results
+Check out the [Int"ermediate Mongo](https://gawdiseattle.gitbook.io/wdi/04-databases/mongo-intro/intermediate) lecture notes in the instructor notes directory. Follow through each of the explanations. Follow the commands and perform appropriate finds after each update call to see the results
 
 - Find the bounties that are greater than `100000`
 - Find the bounties that are less than `1000`
@@ -153,8 +153,8 @@ Check out the [Intermediate Mongo](https://gawdiseattle.gitbook.io/wdi/04-databa
 
 
 - Find the bounty with the hunter `Nebula`
-- Find the bounty with the ship `Waverider` OR `Serenity`
-- Find the bounty who is not captured AND has whose client is `Ayesha High Priestess of the Sovereign`
+- Find the bounty with the ship ``Waverider` OR `Serenity`
+- Find the bounty who is not captured AND has whose client is `Ayesha High Priestess of the Sovereign
 - Increase all the bounties by 333333
 - Multiply all the bounties by 2
 - Add `Bobba Fett` as a hunter for `Malcolm Reynolds`
