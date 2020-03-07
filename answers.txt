@@ -1,1 +1,118 @@
-Please replace this text with ~50 lines of terminal history.
+db.bounties.find({}, { hunters: 1, id: 0, name: 1 })
+Error: error: {
+	"ok" : 0,
+	"errmsg" : "Projection cannot have a mix of inclusion and exclusion.",
+	"code" : 2,
+	"codeName" : "BadValue"
+}
+> db.bounties.find({}, { hunters: 1, _id: 0, name: 1 })
+{ "name" : "Rocket", "hunters" : [ "Nebula", "Ravagers" ] }
+{ "name" : "White Canary", "hunters" : [ "Chronos" ] }
+{ "name" : "Malcolm Reynolds", "hunters" : [ "Jubal Early" ] }
+{ "name" : "Pete Fitton", "hunters" : [ "Some Hunter", "Some Other Hunter" ] }
+{ "name" : "Han Solo", "hunters" : [ "Bobba Fett", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ] }
+> db.bounties.find({ hunters: { $in: ["Nebula"]}})
+{ "_id" : ObjectId("5e62ea6c1861a5536951a401"), "name" : "Rocket", "wantedFor" : "Stealing Batteries", "client" : "Ayesha High Priestess of the Sovereign", "reward" : 1000000000, "ship" : "The Milano 2", "hunters" : [ "Nebula", "Ravagers" ], "captured" : false }
+> db.bounties.find({ hunters: { $in: ["Nebula"]}}).pretty()
+{
+	"_id" : ObjectId("5e62ea6c1861a5536951a401"),
+	"name" : "Rocket",
+	"wantedFor" : "Stealing Batteries",
+	"client" : "Ayesha High Priestess of the Sovereign",
+	"reward" : 1000000000,
+	"ship" : "The Milano 2",
+	"hunters" : [
+		"Nebula",
+		"Ravagers"
+	],
+	"captured" : false
+}
+> db.bounties.find({$or: [{ ship: "Waverider" }, {ship: "Serenity"}]})
+{ "_id" : ObjectId("5e62ea6c1861a5536951a402"), "name" : "White Canary", "wantedFor" : "Screwing up the timeline, causing anachronisms", "client" : "Time Bureau", "reward" : 50000, "ship" : "Waverider", "hunters" : [ "Chronos" ], "captured" : false }
+{ "_id" : ObjectId("5e62ea6c1861a5536951a403"), "name" : "Malcolm Reynolds", "wantedFor" : "Aiming to misbehave", "client" : "The Alliance", "reward" : 40000, "ship" : "Serenity", "hunters" : [ "Jubal Early" ], "captured" : false }
+> db.bounties.find({$or: [{ ship: "Waverider" }, {ship: "Serenity"}]}).pretty()
+{
+	"_id" : ObjectId("5e62ea6c1861a5536951a402"),
+	"name" : "White Canary",
+	"wantedFor" : "Screwing up the timeline, causing anachronisms",
+	"client" : "Time Bureau",
+	"reward" : 50000,
+	"ship" : "Waverider",
+	"hunters" : [
+		"Chronos"
+	],
+	"captured" : false
+}
+{
+	"_id" : ObjectId("5e62ea6c1861a5536951a403"),
+	"name" : "Malcolm Reynolds",
+	"wantedFor" : "Aiming to misbehave",
+	"client" : "The Alliance",
+	"reward" : 40000,
+	"ship" : "Serenity",
+	"hunters" : [
+		"Jubal Early"
+	],
+	"captured" : false
+}
+> db.bounties.find({captured: false, client:"Ayesha High Priestess of the Sovereign"})
+{ "_id" : ObjectId("5e62ea6c1861a5536951a401"), "name" : "Rocket", "wantedFor" : "Stealing Batteries", "client" : "Ayesha High Priestess of the Sovereign", "reward" : 1000000000, "ship" : "The Milano 2", "hunters" : [ "Nebula", "Ravagers" ], "captured" : false }
+> db.bounties.update({}, { $inc: { reward: 333333 }})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.bounties.update({}, { $inc: { reward: 333333 }}, { multi: true }))
+2020-03-06T17:30:05.277-0800 E  QUERY    [js] uncaught exception: SyntaxError: unexpected token: ')' :
+@(shell):1:68
+> db.bounties.update({}, { $inc: { reward: 333333 }}, { multi: true })
+WriteResult({ "nMatched" : 5, "nUpserted" : 0, "nModified" : 5 })
+> db.bounties.update({}, { $mul: { reward: 2 }}, { multi: true })
+WriteResult({ "nMatched" : 5, "nUpserted" : 0, "nModified" : 5 })
+> db.bounties.update({ name: "Malcolm Reynolds" }, { $push: { hunters: "Bobba Fett" } })
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.bounties.update({ ship: "Waverider"}, { $push: {hunters: "Bobba Fett" } })
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.bounties.find({hunters: $inc: { "Dengar" }}).pretty()
+2020-03-06T17:36:50.447-0800 E  QUERY    [js] uncaught exception: SyntaxError: missing } after property list :
+@(shell):1:31
+> db.bounties.find({hunters: $in: { "Dengar" }}).pretty()
+2020-03-06T17:37:43.106-0800 E  QUERY    [js] uncaught exception: SyntaxError: missing } after property list :
+@(shell):1:30
+> db.bounties.find({hunters: $in: [ "Dengar" ]}).pretty()
+2020-03-06T17:38:19.631-0800 E  QUERY    [js] uncaught exception: SyntaxError: missing } after property list :
+@(shell):1:30
+> db.bounties.find({hunters: { $in: [ "Dengar" ]} }).pretty()
+{
+	"_id" : ObjectId("5e62f4441861a5536951a40b"),
+	"name" : "Han Solo",
+	"wantedFor" : "Owing money",
+	"client" : "Jabba the Hut",
+	"reward" : 2666666,
+	"ship" : "Millennium Falcon",
+	"hunters" : [
+		"Bobba Fett",
+		"Dengar",
+		"IG-88",
+		"Zuckuss",
+		"Greedo",
+		"Bossk",
+		"4-LOM"
+	],
+	"captured" : false
+}
+> db.bounties.update({ name: "Han Solo" }, { $pull { hunters: { "Dengar" } } } )
+2020-03-06T17:46:18.047-0800 E  QUERY    [js] uncaught exception: SyntaxError: missing : after property id :
+@(shell):1:49
+> db.bounties.update({ name: "Han Solo" }, { $pull { hunters: "Dengar"  } } )
+2020-03-06T17:46:27.671-0800 E  QUERY    [js] uncaught exception: SyntaxError: missing : after property id :
+@(shell):1:49
+> db.bounties.update({ name: "Han Solo" }, { $pull { hunters: { $in: "Dengar" } } } )
+2020-03-06T17:47:38.884-0800 E  QUERY    [js] uncaught exception: SyntaxError: missing : after property id :
+@(shell):1:49
+> db.bounties.update({ name: "Han Solo" }, { $pull { hunters: { $in: ["Dengar"] } } } )
+2020-03-06T17:47:53.684-0800 E  QUERY    [js] uncaught exception: SyntaxError: missing : after property id :
+@(shell):1:49
+> db.bounties.update({ name: "Han Solo" }, { $pull: { hunters: { $in: ["Dengar"] } } } )
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.bounties.update({ name: "Han Solo" }, { $set: { lastSeen: "yesterday" }}, { upsert: true })
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.bounties.update({}, { $set: { lastSeen: "last week" }}, { upsert: false })
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
