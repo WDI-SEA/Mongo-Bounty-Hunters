@@ -75,4 +75,48 @@ BulkWriteResult({
 	"nRemoved" : 0,
 	"upserted" : [ ]
 })
-> 
+
+--- database build done --
+
+db.bounties.find().pretty()
+
+db.bounties.find( { client: "Time Bureau"})
+
+db.bounties.find({captured: true})
+
+db.bounties.find({hunters: "Weeping Angels"})
+
+db.bounties.find( {}, {name: 1} )
+
+db.bounties.remove( {name: "Starbuck"} )
+
+db.bounties.remove( {_id: ObjectId("5e62f3e31312f630e3b5094a")})
+
+db.bounties.update( {name: "Sara Lance"}, {name: "White Canary"})
+
+db.bounties.update( {name: "Rocket"}, {$set {ship: "The Milano 2"}})
+
+--- trying to fix the update command mistake ---
+ db.bounties.update( {ship: "The Milano2"}, {$set {
+     {name: 'Rocket'},
+     {wantedFor: 'Stealing Batteries'},
+     {client: 'Ayesha High Priestess of the Sovereign'},
+     {reward: 1000000000},
+     {ship: 'The Milano 2'},
+     {hunters: ['Nebula', 'Ravagers']},
+     {captured: false}
+}, {upsert: true}})
+
+-------
+
+db.bounties.find( {reward: {$gt: 100000}})
+
+db.bounties.find( {reward: {$lt: 1000}})
+
+db.bounties.find( {reward: {$lte: 1000}})
+
+db.bounties.find( {hunters: 'Nebula'})
+
+db.bounties.find( { $or: [ {ship: "Waverider"}, {ship: "Serenity"}]})
+
+db.bounties.find( {captured: false}, {client: "Ayesha High Priestess of the Sovereign"})
