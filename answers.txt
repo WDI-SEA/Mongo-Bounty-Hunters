@@ -92,9 +92,9 @@ db.bounties.remove( {name: "Starbuck"} )
 
 db.bounties.remove( {_id: ObjectId("5e62f3e31312f630e3b5094a")})
 
-db.bounties.update( {name: "Sara Lance"}, {name: "White Canary"})
+db.bounties.update( {name: "Sara Lance"}, {$set: {name: "White Canary"}})
 
-db.bounties.update( {name: "Rocket"}, {$set {ship: "The Milano 2"}})
+db.bounties.update( {name: "Rocket"}, {$set: {ship: "The Milano 2"}})
 
 --- trying to fix the update command mistake ---
  db.bounties.update( {ship: "The Milano2"}, {$set {
@@ -129,8 +129,8 @@ db.bounties.update({name: "Malcolm Reynolds"}, {$push: {hunters: "Bobba Fett"}})
 
 db.bounties.update({ship: "Waverider"}, {$push: {hunters: "Bobba Fett"}})
 
-db.bounties.remove({hunters: "Dengar"})
+db.bounties.update({}, {$pull:{ hunters: "Dengar"}}, {multi: true})
 
-db.bounties.upsert({name: "Han Solo"}, {lastSeen: "yesterday}, {upsert: true})
+db.bounties.update({name: "Han Solo"}, {$set: {lastSeen: "yesterday"}}, {upsert: true})
 
-db.bounties.upsert({}, {lastSeen: "last week"}, {upsert: false})
+db.bounties.update({}, {$set: {lastSeen: "last week"}}, {upsert: false})
