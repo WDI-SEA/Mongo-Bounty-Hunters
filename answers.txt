@@ -121,13 +121,13 @@ db.bounties.find( { $or: [ {ship: "Waverider"}, {ship: "Serenity"}]})
 
 db.bounties.find( {captured: false}, {client: "Ayesha High Priestess of the Sovereign"})
 
-db.bounties.update({}, {$inc: {bounties: 333333}})
+db.bounties.update({}, {$inc: {reward: 333333}}, {multi: true})
 
-db.bounties.update({}, {$mult: {bounties: 2}})
+db.bounties.update({}, {$mul: {bounties: 2}})
 
-db.bounties.update({name: "Malcolm Reynolds"}, {$set: {hunters: [..."Bobba Fett"]}})
+db.bounties.update({name: "Malcolm Reynolds"}, {$push: {hunters: "Bobba Fett"}})
 
-db.bounties.update({ship: "Waverider"}, {$set: {hunters: [...Bobba Fett"]}})
+db.bounties.update({ship: "Waverider"}, {$push: {hunters: "Bobba Fett"}})
 
 db.bounties.remove({hunters: "Dengar"})
 
