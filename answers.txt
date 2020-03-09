@@ -62,14 +62,14 @@ Add Bobba Fett as a hunter for the one that has the ship Waverider
 
 Find and remove Dengar the bounty hunter
 > db.bounties.find({hunters: "Dengar"})
-> db.bounties.remove({hunters: "Dengar"}, {$pop: {hunters: "Dengar"}})
+> db.bounties.update({hunters: "Dengar"}, {$pop: {hunters: "Dengar"}})
 
 Upserts will insert a value if it doesn't exist, if it does it will update it
 Try giving a new field of lastSeen to Han Solo, with the property yesterday set upsert to true
 db.bounties.update({name: "Han Solo"}, {$set: {lastSeen: "yesterday"}}, {upsert: true})
 
 Try giving all bounties a new field of lastSeen - with a value of last week and set upsert to false
-> db.bounties.update({}, {$set: {lastSeen: "last week"}}, {upsert: false})
+> db.bounties.update({}, {$set: {lastSeen: "last week"}}, {multi: true, upsert: false})
 
 FINAL OUTPUT
 {
@@ -98,6 +98,7 @@ FINAL OUTPUT
 		"Bobba Fett"
 	],
 	"captured" : false
+    "lastSeen" : "last week"
 }
 {
 	"_id" : ObjectId("5e658407bc2a0745925fc016"),
@@ -111,6 +112,7 @@ FINAL OUTPUT
 		"Bobba Fett"
 	],
 	"captured" : false
+    "lastSeen" : "last week"
 }
 {
 	"_id" : ObjectId("5e6579da5af45b2fc3766af3"),
