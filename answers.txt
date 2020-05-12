@@ -1,113 +1,95 @@
 Please replace this text with ~50 lines of terminal history.
 use hunters
-> db.bounties.insert(
-... {
-... name: 'Han Solo',
-... wantedFor: 'Owing money',
-... client: 'Jabba the Hut',
-... reward: 1000000,
-... ship: 'Millennium Falcon',
-... hunters: ['Bobba Fett', 'Dengar','IG-88','Zuckuss','Greedo','Bossk','4-LOM'],
-... captured: false
-... }
-... )
-
-> db.bounties.insert([
-... {
-... name: 'Han Solo',
-... wantedFor: 'Owing money',
-... client: 'Jabba the Hut',
-... reward: 1000000,
-... ship: 'Millennium Falcon',
-... hunters: ['Bobba Fett', 'Dengar','IG-88','Zuckuss','Greedo','Bossk','4-LOM'],
-... captured: false
-... },
-... {
-... name: 'Rocket',
-... wantedFor: 'Stealing Batteries',
-... client: 'Ayesha High Priestess of the Sovereign',
-... reward: 1000000000,
-... ship: 'The Milano',
-... hunters: ['Nebula', 'Ravagers'],
-... captured: false
-... },
-... {
-... name: 'Sara Lance',
-... wantedFor: 'Screwing up the timeline, causing anachronisms',
-... client: 'Time Bureau',
-... reward: 50000,
-... ship: 'Waverider',
-... hunters: ['Chronos'],
-... captured: false
-... },
-... {
-... name: 'Malcom Reynolds',
-... wantedFor: 'Aiming to misbehave',
-... client: 'The Alliance',
-... reward: 40000,
-... ship: 'Serenity',
-... hunters: ['Jubal Early'],
-... captured: false
-... },
-... {
-... name: 'Starbuck',
-... wantedFor: "Disobeying Captain's orders",
-... client: 'Captain Adama',
-... ship: 'Demetrius',
-... reward: 1000,
-... hunters: ['Apollo'],
-... captured: true
-... }
-... ])
-BulkWriteResult({
-        "writeErrors" : [ ],
-        "writeConcernErrors" : [ ],
-        "nInserted" : 5,
-        "nUpserted" : 0,
-        "nMatched" : 0,
-        "nModified" : 0,
-        "nRemoved" : 0,
-        "upserted" : [ ]
-})
-
+db.createCollection('bounties')
+db.bounties.insert( { name: 'Han Solo', wantedFor: 'Owing money', client: 'Jabba the Hut', reward: 1000000, ship: 'Millennium Falcon', hunters: ['Bobba Fett', 'Dengar','IG-88','Zuckuss','Greedo','Bossk','4-LOM'], captured: false } )
+db.bounties insert([ { name: 'Han Solo',     wantedFor : 'Owing money',     client : 'Jabba the Hut',     reward : 1000000,     ship: 'Millennium Falcon',     hunters :['Bobba Fett', 'Dengar', 'IG-88', 'Zuckuss', 'Greedo', 'Bossk', '4-LOM'],     captured: false }, {  name: 'Rocket',     wantedFor : 'Stealing Batteries',     client : 'Ayesha High Priestess of the Sovereign',     reward : 1000000000,     ship: 'The Milano',     hunters :['Nebula', 'Ravagers'],     captured: false }, {  name: 'Sara Lance',     wantedFor : 'Screwing up the timeline, causing anachronisms',     client : 'Time Bureau',     reward : 50000,     ship: 'Waverider',     hunters :['Chronos'],     captured: false }, { name: 'Malcolm Reynolds',     wantedFor : 'Aiming to misbehave',     client : 'The Alliance',     reward : 40000,     ship: 'Serenity',     hunters :['Jubal Early'],     captured: false }, { name: 'Starbuck',     wantedFor : "Disobeying Captain's orders",     client : 'Captain Adama',     ship: 'Demetrius',     reward : 1000,     hunters :['Apollo'],     captured: true } ]}
+use hunters
+db.bounties.insert([ { name: 'Han Solo', wantedFor: 'Owing money', client: 'Jabba the Hut', reward: 1000000, ship: 'Millennium Falcon', hunters: ['Bobba Fett', 'Dengar','IG-88','Zuckuss','Greedo','Bossk','4-LOM'], captured: false }, { name: 'Rocket', wantedFor: 'Stealing Batteries', client: 'Ayesha High Priestess of the Sovereign', reward: 1000000000, ship: 'The Milano', hunters: ['Nebula', 'Ravagers'], captured: false }, { name: 'Sara Lance', wantedFor: 'Screwing up the timeline, causing anachronisms', client: 'Time Bureau', reward: 50000, ship: 'Waverider', hunters: ['Chronos'], captured: false }, { name: 'Malcom Reynolds', wantedFor: 'Aiming to misbehave', client: 'The Alliance', reward: 40000, ship: 'Serenity', hunters: ['Jubal Early'], captured: false }, { name: 'Starbuck', wantedFor: "Disobeying Captain's orders", client: 'Captain Adama', ship: 'Demetrius', reward: 1000, hunters: ['Apollo'], captured: true } ])
+help
+show collections
+show bounties
 db.bounties.find()
 db.bounties.find( {client: 'Time Bureau'} )
+db.bounties.find( {captured: false} )
 db.bounties.find( {captured: true} )
+db.bounties.insert( { name: 'Vegeta', wantedFor: 'Exploding a planet', client: 'Kakarot', reward: 9000, ship: 'Kamekameha', hunters: ['Piccolo', 'The Ginyu Force'], captured: false } )
 db.bounties.find( {client: 'Kakarot'} )
+db.bounties.find( name  )
+db.bounties.find( {name}  )
+db.bounties.filter( {name} )
+db.bounties.filter(name)
+db.bounties.find( {type: 'name'} )
+db.bounties.find( {type: name} )
+db.bounties.find( {name: 1} )
+db.bounties.find( {name} )
+db.bounties.find( {name: {$all} }  )
 db.bounties.distinct('name')
-
 db.bounties.remove( { name: 'Starbuck' } )
 db.bounties.find( {name: 'Han Solo'} )
 db.bounties.remove( {_id: ObjectId("5ebaa9164c5f823f5bf06a17") } )
 db.bounties.find( {name: 'Han Solo'} )
-
+db.bounties.find( {name: 'Sara Lance'} )
+use hunters
+db.bounties.update({name: 'Sara Lance'},{$set: {name: 'White Canary}})
+db.bounties.update({name: 'Sara Lance'}, {name: 'White Canary})
+db.bounties.update({name: 'Sara Lance'}, {name: 'White Canary'})
+db.bounties.find( {name: 'White Canary'} )
+db.bounties.find()
+db.bounties.update({name: 'White Canary'}, {wantedFor : 'Screwing up the timeline, causing anachronisms',     client : 'Time Bureau',     reward : 50000,     ship: 'Waverider',     hunters :['Chronos'],     captured: false })
+db.bounties.find()
+db.bounties.update({_id: ObjectId("5ebaa9164c5f823f5bf06a19") }, {name: 'White Canary', wantedFor : 'Screwing up the timeline, causing anachronisms',     client : 'Time Bureau',     reward : 50000,     ship: 'Waverider',     hunters :['Chronos'],     captured: false })
+db.bounties.find()
+db.bounties.update({name: 'White Canary'}, {$set: { name: 'Sara Lance'} })
+db.bounties.find()
 db.bounties.update({name: 'Sara Lance'}, {$set: { name: 'White Canary'} })
+db.bounties.find()
 db.bounties.update({name: 'Rocket'}, {$set: { ship: 'The Milano 2'} })
-
-db.bounties.find(
-... {
-... reward: {$gt: 100000}
-... })
+db.bounties.find()
+db.bounties.find( { reward: {$gt: 100000} })
 db.bounties.find( { reward: {$lt: 1000} })
 db.bounties.find( { reward: {$lte: 1000} })
-
+db.bounties.find()
+db.bounties.insert( { name: 'Starbuck', wantedFor: "Disobeying Captain's orders", client: 'Captain Adama', ship: 'Demetrius', reward: 1000, hunters: ['Apollo'], captured: true } )
+db.bounties.find()
+db.bounties.find( { reward: {$lte: 1000} })
 db.bounties.distinct( 'reward' )
 db.bounties.distinct( 'reward', {hunters: 'Nebula'} )
 db.bounties.find({hunters: 'Nebula'})
+db.bounties.find({ship: 'Waverider', 'Serenity'})
+db.bounties.find({ship: 'Waverider', ship: 'Serenity'})
+db.bounties.find({ship: 'Waverider'},{ ship: 'Serenity'})
+db.bounties.find()
 db.bounties.find({$or: [{ship: 'Waverider'},{ ship: 'Serenity'}]})
 db.bounties.find({client: 'Ayesha High Priestess of the Sovereign', captured: false})
+db.bounties.update({$inc: { reward: 333333 } })
+db.bounties.update({reward: {$gt: 0}},{$inc: { reward: 333333 },{multi: true} })
+db.bounties.update({reward: {$gt: 0}},{$inc: { reward: 333333 }},{multi: true} })
 db.bounties.update({reward:{ $gt: 0  }}, {$inc: {reward: 333333}}, {multi: true} )
 db.bounties.update({reward:{ $gt: 0  }}, {$mul: {reward: 2}}, {multi: true} )
-db.bounties.update( { name: 'Malcom Reynolds' }, { $push: { hunters: 'Bobba Fett' } 
-} )
+db.bounties.find()
+db.bounties.update( { name: 'Malcolm Reynolds' }, { $push: { hunters: 'Bobba Fett' } } )
+db.bounties.update( { name: 'Malcom Reynolds' }, { $push: { hunters: 'Bobba Fett' } } )
 db.bounties.update( { ship: 'Waverider' }, { $push: { hunters: 'Bobba Fett' } } )
+db.bounties.update({name: 'Malcom'}, {$set: { name: 'Malcolm'} })
+db.bounties.update({name: 'Malcom Reynolds'}, {$set: { name: 'Malcolm Reynolds'} })
+db.bounties.find({hunters: 'Dengar'})
+db.bounties.update( { name: 'Han Solo' }, { $pop: { hunters: 'Dengar' } } )
 db.bounties.update( { name: 'Han Solo' }, { $pop: { hunters: 1 } } )
 db.bounties.find({name: 'Han Solo'})
- db.bounties.update( { name: 'Han Solo' }, { $pull: { hunters: 'Dengar' } } )
- db.bounties.find({name: 'Han Solo'})
- db.bounties.update({ name: 'Han Solo'}, {$set: {lastSeen: 'yesterday'}}, {upsert: tr
-ue})
- db.bounties.find({name: 'Han Solo'})
- db.bounties.updateMany({},{$unset: {lastSeen: 'last week'}}, {upsert:false})
-
+db.bounties.update( { name: 'Han Solo' }, { $pull: { hunters: 'Dengar' } } )
+db.bounties.find({name: 'Han Solo'})
+db.bounties.update({ name: 'Han Solo'}, {$set: {lastSeen: 'yesterday'}}, {upsert: true})
+db.bounties.find({name: 'Han Solo'})
+db.bounties.updateMany( { }, [ { $set: { lastSeen: 'last week' } } ])
+db.bounties.updateMany( { }, [ { $set: { lastSeen: 'last week' }, {upsert: false} } ])
+db.bounties.updateMany( { }, [ { $set: { lastSeen: 'last week' }, { upsert: false } } ])
+db.bounties.updateMany({},{$set: {lastseen: 'last week'}}, {upsert:false})
+db.bounties.find()
+db.bounties.updateMany({},{$unset: {lastseen: 'last week'}}, {upsert:false})
+db.bounties.find()
+db.bounties.updateMany({},{$unset: {lastSeen: 'last week'}}, {upsert:false})
+db.bounties.find()
+cat ~/.dbshell
+/.dbshell
+cat ~/.db.shell
 
