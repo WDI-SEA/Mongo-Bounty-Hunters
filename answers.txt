@@ -81,7 +81,12 @@ or
 db.bounties.update({}, {$set: {lastSeen : 'last week'}}, {upsert : false , multi: true })
 
 
+To remove the field property
 
 
+db.bounties.updateMany ({},{$unset: { lastSeenwe: "last week"} } )
+
+ db.bounties.updateMany ({},{$unset: { lastSeenwe: "last week"} } )
+{ "acknowledged" : true, "matchedCount" : 5, "modifiedCount" : 5 }
 
  
