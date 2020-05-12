@@ -1,1 +1,83 @@
 Please replace this text with ~50 lines of terminal history.
+
+Note: There's a typo. the database is bouties, and not bounties
+
+> db.bouties.find()
+{ "_id" : ObjectId("5eb9f25b282d3e6f77493184"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 1000000, "ship" : "Millennium Falcon", "hunters" : [ "Bobba Fet", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false }
+{ "_id" : ObjectId("5eb9f25b282d3e6f77493185"), "name" : "Rocket", "wantedFor" : "Stealing Batteries", "client" : "Ayesha High Priestess of the Sovereign", "reward" : 100000000, "ship" : "Milano", "hunters" : [ "Nebula", "Ravagers" ], "captured" : false }
+{ "_id" : ObjectId("5eb9f25b282d3e6f77493186"), "name" : "Sara Lance", "wantedFor" : "Screwing up the timeline, causing anachronisms", "client" : "Time Bureau", "reward" : 50000, "ship" : "Waverider", "hunters" : [ "Chronos" ], "captured" : false }
+{ "_id" : ObjectId("5eb9f25b282d3e6f77493187"), "name" : "Malcolm Reynolds", "wantedFor" : "Aiming to misbehave", "client" : "The Alliance", "reward" : 40000, "ship" : "Serenity", "hunters" : [ "Jubal Early" ], "captured" : false }
+{ "_id" : ObjectId("5eb9f25b282d3e6f77493188"), "name" : "Starbuck", "wantedFor" : "Disobeying Captain's orders", "client" : "Captain Adama", "ship" : "Demetrius", "reward" : 1000, "hunters" : [ "Apollo" ], "captured" : true }
+> 
+
+
+ db.bouties.find({client: "Time Bureau"})
+{ "_id" : ObjectId("5eb9f25b282d3e6f77493186"), "name" : "Sara Lance", "wantedFor" : "Screwing up the timeline, causing anachronisms", "client" : "Time Bureau", "reward" : 50000, "ship" : "Waverider", "hunters" : [ "Chronos" ], "captured" : false }
+
+
+> db.bouties.find({ name: "Han Solo"})
+{ "_id" : ObjectId("5eb9f25b282d3e6f77493184"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 1000000, "ship" : "Millennium Falcon", "hunters" : [ "Bobba Fet", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false }
+
+> 
+> db.bouties.find({}, { name : 1})
+{ "_id" : ObjectId("5eb9f25b282d3e6f77493184"), "name" : "Han Solo" }
+{ "_id" : ObjectId("5eb9f25b282d3e6f77493185"), "name" : "Rocket" }
+{ "_id" : ObjectId("5eb9f25b282d3e6f77493186"), "name" : "Sara Lance" }
+{ "_id" : ObjectId("5eb9f25b282d3e6f77493187"), "name" : "Malcolm Reynolds" }
+{ "_id" : ObjectId("5eb9f25b282d3e6f77493188"), "name" : "Starbuck" }
+> 
+
+> db.bouties.remove({name: "Starbuck" })
+WriteResult({ "nRemoved" : 1 })
+
+
+> db.bouties.update({ name: "Rocket"}, {$set: { ship: "The Milano 2"} })
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> 
+
+
+> db.bouties.find({ reward: { $gt : 100000} })
+{ "_id" : ObjectId("5eb9f25b282d3e6f77493184"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 1000000, "ship" : "Millennium Falcon", "hunters" : [ "Bobba Fet", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false }
+{ "_id" : ObjectId("5eb9f25b282d3e6f77493185"), "name" : "Rocket", "wantedFor" : "Stealing Batteries", "client" : "Ayesha High Priestess of the Sovereign", "reward" : 100000000, "ship" : "The Milano 2", "hunters" : [ "Nebula", "Ravagers" ], "captured" : false }
+> 
+
+db.bouties.find({ reward: { $lt: 1000}  })
+
+db.bouties.find({ reward: { $lte: 1000}  })
+
+ db.bouties.find({ hunters: "Nebula"})
+{ "_id" : ObjectId("5eb9f25b282d3e6f77493185"), "name" : "Rocket", "wantedFor" : "Stealing Batteries", "client" : "Ayesha High Priestess of the Sovereign", "reward" : 100000000, "ship" : "The Milano 2", "hunters" : [ "Nebula", "Ravagers" ], "captured" : false }
+
+> db.bouties.find( { $or: [ { ship: "Waverider" }, { ship: "Serenity" } ] } )
+{ "_id" : ObjectId("5eb9f25b282d3e6f77493186"), "name" : "Sara Lance", "wantedFor" : "Screwing up the timeline, causing anachronisms", "client" : "Time Bureau", "reward" : 50000, "ship" : "Waverider", "hunters" : [ "Chronos" ], "captured" : false }
+{ "_id" : ObjectId("5eb9f25b282d3e6f77493187"), "name" : "Malcolm Reynolds", "wantedFor" : "Aiming to misbehave", "client" : "The Alliance", "reward" : 40000, "ship" : "Serenity", "hunters" : [ "Jubal Early" ], "captured" : false }
+
+ db.bouties.find({ client: "Ayesha High Priestess of the Sovereign", captured: false})
+{ "_id" : ObjectId("5eb9f25b282d3e6f77493185"), "name" : "Rocket", "wantedFor" : "Stealing Batteries", "client" : "Ayesha High Priestess of the Sovereign", "reward" : 100000000, "ship" : "The Milano 2", "hunters" : [ "Nebula", "Ravagers" ], "captured" : false }
+
+ db.bouties.update({}, { $inc: { reward: 333333} }, { multi : true })
+WriteResult({ "nMatched" : 4, "nUpserted" : 0, "nModified" : 4 })
+
+ db.bouties.update({}, { $mul: { reward: (2)}}, {multi: true})
+WriteResult({ "nMatched" : 4, "nUpserted" : 0, "nModified" : 4 })
+
+ db.bouties.update( { name: "Malcolm Reynolds"}, { $push: { hunters: "Bobba Fet"} } )
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+
+ db.bouties.update( { ship: "Waverider"}, { $push: { hunters: "Bobba Fet"} } )
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+
+(I think)
+db.bouties.update({ name: "Han Solo"}, { $pull: { hunter: "Dengar"}})
+
+
+db.bouties.update({ name: "Han Solo"}, { lastseen: "yesterday" }, {upsert: true})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+
+> db.bouties.update({}, { lastseen: "last week" }, {upsert: false})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.bouties.find()
+{ "_id" : ObjectId("5eb9f25b282d3e6f77493184"), "lastseen" : "last week" }
+{ "_id" : ObjectId("5eb9f25b282d3e6f77493185"), "name" : "Rocket", "wantedFor" : "Stealing Batteries", "client" : "Ayesha High Priestess of the Sovereign", "reward" : 200666666, "ship" : "The Milano 2", "hunters" : [ "Nebula", "Ravagers" ], "captured" : false }
+{ "_id" : ObjectId("5eb9f25b282d3e6f77493186"), "name" : "Sara Lance", "wantedFor" : "Screwing up the timeline, causing anachronisms", "client" : "Time Bureau", "reward" : 766666, "ship" : "Waverider", "hunters" : [ "Chronos", "Bobba Fet" ], "captured" : false }
+{ "_id" : ObjectId("5eb9f25b282d3e6f77493187"), "name" : "Malcolm Reynolds", "wantedFor" : "Aiming to misbehave", "client" : "The Alliance", "reward" : 746666, "ship" : "Serenity", "hunters" : [ "Jubal Early", "Bobba Fet" ], "captured" : false }
