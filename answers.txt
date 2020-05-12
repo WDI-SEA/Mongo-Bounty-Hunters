@@ -1,1 +1,74 @@
 Please replace this text with ~50 lines of terminal history.
+WriteResult({ "nMatched" : 0, "nUpserted" : 0, "nModified" : 0 })
+> db.bounties.findAll()
+2020-05-12T08:36:05.403-0700 E  QUERY    [js] uncaught exception: TypeError: db.bounties.findAll is not a function :
+@(shell):1:1
+> db.bounties.findall()
+2020-05-12T08:36:09.352-0700 E  QUERY    [js] uncaught exception: TypeError: db.bounties.findall is not a function :
+@(shell):1:1
+> db.bounties.find()
+{ "_id" : ObjectId("5eba1e84e3de909ae55c3ddf"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 966667, "ship" : "Millennium Falcon", "hunters" : [ "Bobba Fett", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false }
+{ "_id" : ObjectId("5eba1e84e3de909ae55c3de0"), "name" : "The Milano 2", "wantedFor" : "Stealing Batteries", "client" : "Ayesha High Priestess of the Sovereign", "reward" : 1000000000, "ship" : "The Milano", "hunters" : [ "Nebula", "Ravagers" ], "captured" : false }
+{ "_id" : ObjectId("5eba1e84e3de909ae55c3de1"), "name" : "White Canary", "wantedFor" : "Screwing up the timeline, causing anachronisms", "client" : "Time Bureau", "reward" : 50000, "ship" : "Waverider", "hunters" : [ "Chronos" ], "captured" : false }
+{ "_id" : ObjectId("5eba1e84e3de909ae55c3de2"), "name" : "Malcolm Reynolds", "wantedFor" : "Aiming to misbehave", "client" : "The Alliance", "reward" : 40000, "ship" : "Serenity", "hunters" : [ "Jubal Early" ], "captured" : false }
+> db.bounties.update({name: "White Canary"},{ $inc: {reward: -33333} })
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.bounties.find()
+{ "_id" : ObjectId("5eba1e84e3de909ae55c3ddf"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 966667, "ship" : "Millennium Falcon", "hunters" : [ "Bobba Fett", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false }
+{ "_id" : ObjectId("5eba1e84e3de909ae55c3de0"), "name" : "The Milano 2", "wantedFor" : "Stealing Batteries", "client" : "Ayesha High Priestess of the Sovereign", "reward" : 1000000000, "ship" : "The Milano", "hunters" : [ "Nebula", "Ravagers" ], "captured" : false }
+{ "_id" : ObjectId("5eba1e84e3de909ae55c3de1"), "name" : "White Canary", "wantedFor" : "Screwing up the timeline, causing anachronisms", "client" : "Time Bureau", "reward" : 16667, "ship" : "Waverider", "hunters" : [ "Chronos" ], "captured" : false }
+{ "_id" : ObjectId("5eba1e84e3de909ae55c3de2"), "name" : "Malcolm Reynolds", "wantedFor" : "Aiming to misbehave", "client" : "The Alliance", "reward" : 40000, "ship" : "Serenity", "hunters" : [ "Jubal Early" ], "captured" : false }
+> db.bounties.update({name: "White Canary"},{ $mul: {reward: (1/2)} })
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.bounties.update({name: "Han Solo"},{ $mul: {reward: (1/2)} })
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.bounties.find()
+{ "_id" : ObjectId("5eba1e84e3de909ae55c3ddf"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 483333.5, "ship" : "Millennium Falcon", "hunters" : [ "Bobba Fett", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false }
+{ "_id" : ObjectId("5eba1e84e3de909ae55c3de0"), "name" : "The Milano 2", "wantedFor" : "Stealing Batteries", "client" : "Ayesha High Priestess of the Sovereign", "reward" : 1000000000, "ship" : "The Milano", "hunters" : [ "Nebula", "Ravagers" ], "captured" : false }
+{ "_id" : ObjectId("5eba1e84e3de909ae55c3de1"), "name" : "White Canary", "wantedFor" : "Screwing up the timeline, causing anachronisms", "client" : "Time Bureau", "reward" : 8333.5, "ship" : "Waverider", "hunters" : [ "Chronos" ], "captured" : false }
+{ "_id" : ObjectId("5eba1e84e3de909ae55c3de2"), "name" : "Malcolm Reynolds", "wantedFor" : "Aiming to misbehave", "client" : "The Alliance", "reward" : 40000, "ship" : "Serenity", "hunters" : [ "Jubal Early" ], "captured" : false }
+> db.bounties.update({ name: "Malcolm Reynolds"},{$push: {hunters: "Bobba Fett"}}
+... )
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.bounties.update({ ship: "Waverider"},{$push: {hunters: "Bobba Fett"}} )
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.bounties.remove({hunters: "Dengar"})
+WriteResult({ "nRemoved" : 1 })
+> db.bounties.update({name: "Han Solo"}, {lastSeen: yesterday},{upsert:true})
+2020-05-12T08:45:31.214-0700 E  QUERY    [js] uncaught exception: ReferenceError: yesterday is not defined :
+@(shell):1:41
+> db.bounties.update({name: "Han Solo"}, {lastSeen: yesterday},{upsert:true})
+2020-05-12T08:46:29.691-0700 E  QUERY    [js] uncaught exception: ReferenceError: yesterday is not defined :
+@(shell):1:41
+> db.bounties.update({name: "Han Solo"}, {lastSeen: "yesterday"},{upsert:true})
+WriteResult({
+	"nMatched" : 0,
+	"nUpserted" : 1,
+	"nModified" : 0,
+	"_id" : ObjectId("5ebac4df065bae090bbd0851")
+})
+> db.bounties.update({name: "a-z"}, {lastSeen: "Last week"},{upsert:true})
+WriteResult({
+	"nMatched" : 0,
+	"nUpserted" : 1,
+	"nModified" : 0,
+	"_id" : ObjectId("5ebac4f8065bae090bbd0854")
+})
+> db.bounties.find()
+{ "_id" : ObjectId("5eba1e84e3de909ae55c3de0"), "name" : "The Milano 2", "wantedFor" : "Stealing Batteries", "client" : "Ayesha High Priestess of the Sovereign", "reward" : 1000000000, "ship" : "The Milano", "hunters" : [ "Nebula", "Ravagers" ], "captured" : false }
+{ "_id" : ObjectId("5eba1e84e3de909ae55c3de1"), "name" : "White Canary", "wantedFor" : "Screwing up the timeline, causing anachronisms", "client" : "Time Bureau", "reward" : 8333.5, "ship" : "Waverider", "hunters" : [ "Chronos", "Bobba Fett" ], "captured" : false }
+{ "_id" : ObjectId("5eba1e84e3de909ae55c3de2"), "name" : "Malcolm Reynolds", "wantedFor" : "Aiming to misbehave", "client" : "The Alliance", "reward" : 40000, "ship" : "Serenity", "hunters" : [ "Jubal Early", "Bobba Fett" ], "captured" : false }
+{ "_id" : ObjectId("5ebac4df065bae090bbd0851"), "lastSeen" : "yesterday" }
+{ "_id" : ObjectId("5ebac4f8065bae090bbd0854"), "lastSeen" : "Last week" }
+> db.bounties.include({name: "a-z"}, {lastSeen: "Last week"},{upsert:true})
+2020-05-12T08:48:22.646-0700 E  QUERY    [js] uncaught exception: TypeError: db.bounties.include is not a function :
+@(shell):1:1
+> db.bounties.update({name: "The Milano 2"},{lastSeen: "Last week"},{upsert:true})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.bounties.find()
+{ "_id" : ObjectId("5eba1e84e3de909ae55c3de0"), "lastSeen" : "Last week" }
+{ "_id" : ObjectId("5eba1e84e3de909ae55c3de1"), "name" : "White Canary", "wantedFor" : "Screwing up the timeline, causing anachronisms", "client" : "Time Bureau", "reward" : 8333.5, "ship" : "Waverider", "hunters" : [ "Chronos", "Bobba Fett" ], "captured" : false }
+{ "_id" : ObjectId("5eba1e84e3de909ae55c3de2"), "name" : "Malcolm Reynolds", "wantedFor" : "Aiming to misbehave", "client" : "The Alliance", "reward" : 40000, "ship" : "Serenity", "hunters" : [ "Jubal Early", "Bobba Fett" ], "captured" : false }
+{ "_id" : ObjectId("5ebac4df065bae090bbd0851"), "lastSeen" : "yesterday" }
+{ "_id" : ObjectId("5ebac4f8065bae090bbd0854"), "lastSeen" : "Last week" }
+>
