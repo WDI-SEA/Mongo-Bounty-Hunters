@@ -87,9 +87,12 @@ db.bounties.updateMany({},{$set: {lastseen: 'last week'}}, {upsert:false})
 db.bounties.find()
 db.bounties.updateMany({},{$unset: {lastseen: 'last week'}}, {upsert:false})
 db.bounties.find()
-db.bounties.updateMany({},{$unset: {lastSeen: 'last week'}}, {upsert:false})
+db.bounties.updateMany({},{$set: {lastSeen: 'last week'}}, {upsert:false})
 db.bounties.find()
 cat ~/.dbshell
 /.dbshell
 cat ~/.db.shell
+use hunters
+db.bounties.updateMany({},{$set: {lastSeen: 'last week'}}, {upsert:false})
+db.bounties.find()
 
