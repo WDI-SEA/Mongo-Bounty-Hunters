@@ -160,15 +160,15 @@ Check out the [Intermediate Mongo](https://gawdiseattle.gitbook.io/wdi/04-databa
 - Add `Bobba Fett` as a hunter for `Malcolm Reynolds`
 - Add `Bobba Fett` as a hunter for the one that has the ship `Waverider`
 - Find and remove `Dengar` the bounty hunter
-- Upserts will insert a value if it doesn't exist, if it does it will update it
-- Try giving a new field of `lastSeen` to Han Solo, with the property `yesterday` set upsert to true
-- Try giving all bounties a new field of `lastSeen` - with a value of `last week` and set upsert to `false`
+- Upsert is used with update method which creates a new document if the query does not retrieve any documents matching the query parameters.
+- Try giving a `lastSeen` field to Han Solo, with the property `yesterday` (we haven't set his yet)
+- Try giving all bounties that are not Han Solo a new field of `lastSeen` - with a value of `last week`
 
 ## Turn It In!
 
 Put your terminal output (let's say the last 50 lines or so, not everything you ever did!) into the file in this directory called `answers.txt`. Commit and push your changes, then make a pull request against the base fork.
 
-Get your Mongo shell history with the following command: `cat ~/.dbshell`
+Get your Mongo shell history with the following command: `tail -50 ~/.dbshell`
 
 Did you have any questions or comments about this deliverable? Please add it to the text of your pull request!
 
