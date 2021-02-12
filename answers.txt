@@ -1,1 +1,72 @@
 Please replace this text with ~50 lines of terminal history.
+db.bounties.insert(
+  {
+    name: 'Princess Leia',
+    wantedFor : 'Being a princess',
+    client : 'Darth Vader',
+    reward : 1000000,
+    ship: 'Millennium Falcon',
+    hunters :['Bobba Fett', 'Dengar', 'IG-88', 'Zuckuss', 'Greedo', 'Bossk', '4-LOM'],
+    captured: false
+  }
+  )
+
+Query to see all bounties -
+	db.bounties.find().pretty()
+
+Query to find Time Bureau client - 
+	db.bounties.find( { client: 'Time Bureau' } )
+
+Query to find captured bounties -
+	db.bounties.find( { captured : true } )
+
+Query specific to my bounty -
+	db.bounties.find( { wantedFor : 'Being a princess' } )
+
+Query to find all bounties and return name only -
+	db.bounties.find( { }, { name : 1 } )
+
+Remove Starbuck -
+	db.bounties.remove( { name : 'Starbuck' } )
+
+Edit Rocket -
+	db.bounties.updateOne( { name : 'Rocket' }, { $set : { ship : 'The Milano 2' }} )
+
+Find by bounty greater than 100000
+	db.bounties.find( { reward : { $gt : 100000 } } )
+
+Find by bounty less than 1000
+	db.bounties.find( { reward : { $lt : 1000} } )
+
+Find bounty less than or equal to 1000
+	db.bounties.find( { reward : { $lte : 1000 } } )
+
+Find bounty where hunters include Nebula
+	db.bounties.find( { hunters : 'Nebula' } )
+
+Find bounty where ship is Waverider or Serenity
+	db.bounties.find( { $or: [ { ship : 'Waverider' }, { ship : 'Serenity' } ] } )
+
+Find bounty who is not captured and who is wanted by Ayesha
+	db.bounties.find( { $and : [ { captured : false }, { client : 'Ayesha High Priestess of the Sovereign' } ] } )
+
+Increase the reward of all bounties
+	db.bounties.update( { }, { $inc : { reward : 333 } }, { multi : true } )
+
+Double all bounties
+	db.bounties.update( { }, { $mul: { reward : 2 } }, { multi : true } )
+
+Add Bobba Fett as a hunter to Malcolm Reynolds
+	db.bounties.update( { name : 'Malcolm Reynolds' }, { $push: { hunters : 'Bobba Fett' } } )
+
+Add Bobba Fett as hunter to whoever's in the ship Waverider
+	db.bounties.update( { ship : 'Waverider' }, { $push : { hunters : 'Bobba Fett' }})
+
+Remove Dengar where he is a hunter -
+	db.bounties.update( { hunters : 'Dengar' }, { $pull : { hunters : 'Dengar' } }, { multi : true } )
+
+Adds the "last seen" field to Han Solo and sets it to Yesterday
+	db.bounties.update( { name : 'Han Solo' }, { $set : { lastSeen : 'yesterday' } } )
+
+Adds "last seen" field to everyone who is not Han Solo
+	db.bounties.update( { name : { $ne : 'Han Solo' } }, { $set : { lastSeen : 'last week' } }, { multi : true } )
