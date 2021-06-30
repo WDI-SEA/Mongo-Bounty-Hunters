@@ -127,8 +127,9 @@ db.bounties.insert([
 ## Read/Query
 
 - Do a query to see all the bounties
-- 
+
 `db.bounties.find().pretty()`
+
 - Do a query to find the bounty whose client is `Time Bureau`
 
 `db.bounties.find({client : 'Time Bureau'})`
