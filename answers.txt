@@ -92,4 +92,17 @@ MongoDB Enterprise atlas-2b9nl4-shard-0:PRIMARY> db.bounties.find().pretty()
 	"captured" : true
 }
 
+MongoDB Enterprise atlas-2b9nl4-shard-0:PRIMARY> db.bounties.find({client: 'Time Bureau'}).pretty()
+{
+	"_id" : ObjectId("60dcfcc3919f4e2f2cb8391a"),
+	"name" : "Sara Lance",
+	"wantedFor" : "Screwing up the timeline, causing anachronisms",
+	"client" : "Time Bureau",
+	"reward" : 50000,
+	"ship" : "Waverider",
+	"hunters" : [
+		"Chronos"
+	],
+	"captured" : false
+}
 
