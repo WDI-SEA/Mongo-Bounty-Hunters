@@ -1,1 +1,95 @@
-Please replace this text with ~50 lines of terminal history.
+MongoDB Enterprise atlas-2b9nl4-shard-0:PRIMARY> db.bounties.find()
+{ "_id" : ObjectId("60dcfc6d919f4e2f2cb83917"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 1000000, "ship" : "Millennium Falcon", "hunters" : [ "Bobba Fett", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false }
+{ "_id" : ObjectId("60dcfcc3919f4e2f2cb83918"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 1000000, "ship" : "Millennium Falcon", "hunters" : [ "Bobba Fett", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false }
+{ "_id" : ObjectId("60dcfcc3919f4e2f2cb83919"), "name" : "Rocket", "wantedFor" : "Stealing Batteries", "client" : "Ayesha High Priestess of the Sovereign", "reward" : 1000000000, "ship" : "The Milano", "hunters" : [ "Nebula", "Ravagers" ], "captured" : false }
+{ "_id" : ObjectId("60dcfcc3919f4e2f2cb8391a"), "name" : "Sara Lance", "wantedFor" : "Screwing up the timeline, causing anachronisms", "client" : "Time Bureau", "reward" : 50000, "ship" : "Waverider", "hunters" : [ "Chronos" ], "captured" : false }
+{ "_id" : ObjectId("60dcfcc3919f4e2f2cb8391b"), "name" : "Malcolm Reynolds", "wantedFor" : "Aiming to misbehave", "client" : "The Alliance", "reward" : 40000, "ship" : "Serenity", "hunters" : [ "Jubal Early" ], "captured" : false }
+{ "_id" : ObjectId("60dcfcc3919f4e2f2cb8391c"), "name" : "Starbuck", "wantedFor" : "Disobeying Captain's orders", "client" : "Captain Adama", "ship" : "Demetrius", "reward" : 1000, "hunters" : [ "Apollo" ], "captured" : true }
+MongoDB Enterprise atlas-2b9nl4-shard-0:PRIMARY> db.bounties.find().pretty()
+{
+	"_id" : ObjectId("60dcfc6d919f4e2f2cb83917"),
+	"name" : "Han Solo",
+	"wantedFor" : "Owing money",
+	"client" : "Jabba the Hut",
+	"reward" : 1000000,
+	"ship" : "Millennium Falcon",
+	"hunters" : [
+		"Bobba Fett",
+		"Dengar",
+		"IG-88",
+		"Zuckuss",
+		"Greedo",
+		"Bossk",
+		"4-LOM"
+	],
+	"captured" : false
+}
+{
+	"_id" : ObjectId("60dcfcc3919f4e2f2cb83918"),
+	"name" : "Han Solo",
+	"wantedFor" : "Owing money",
+	"client" : "Jabba the Hut",
+	"reward" : 1000000,
+	"ship" : "Millennium Falcon",
+	"hunters" : [
+		"Bobba Fett",
+		"Dengar",
+		"IG-88",
+		"Zuckuss",
+		"Greedo",
+		"Bossk",
+		"4-LOM"
+	],
+	"captured" : false
+}
+{
+	"_id" : ObjectId("60dcfcc3919f4e2f2cb83919"),
+	"name" : "Rocket",
+	"wantedFor" : "Stealing Batteries",
+	"client" : "Ayesha High Priestess of the Sovereign",
+	"reward" : 1000000000,
+	"ship" : "The Milano",
+	"hunters" : [
+		"Nebula",
+		"Ravagers"
+	],
+	"captured" : false
+}
+{
+	"_id" : ObjectId("60dcfcc3919f4e2f2cb8391a"),
+	"name" : "Sara Lance",
+	"wantedFor" : "Screwing up the timeline, causing anachronisms",
+	"client" : "Time Bureau",
+	"reward" : 50000,
+	"ship" : "Waverider",
+	"hunters" : [
+		"Chronos"
+	],
+	"captured" : false
+}
+{
+	"_id" : ObjectId("60dcfcc3919f4e2f2cb8391b"),
+	"name" : "Malcolm Reynolds",
+	"wantedFor" : "Aiming to misbehave",
+	"client" : "The Alliance",
+	"reward" : 40000,
+	"ship" : "Serenity",
+	"hunters" : [
+		"Jubal Early"
+	],
+	"captured" : false
+}
+{
+	"_id" : ObjectId("60dcfcc3919f4e2f2cb8391c"),
+	"name" : "Starbuck",
+	"wantedFor" : "Disobeying Captain's orders",
+	"client" : "Captain Adama",
+	"ship" : "Demetrius",
+	"reward" : 1000,
+	"hunters" : [
+		"Apollo"
+	],
+	"captured" : true
+}
+
+
