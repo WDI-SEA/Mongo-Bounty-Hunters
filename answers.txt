@@ -109,3 +109,23 @@ MongoDB Enterprise atlas-2b9nl4-shard-0:PRIMARY> db.bounties.find({client: 'Time
 MongoDB Enterprise atlas-2b9nl4-shard-0:PRIMARY> db.bounties.find( { captured: true } )
 { "_id" : ObjectId("60dcfcc3919f4e2f2cb8391c"), "name" : "Starbuck", "wantedFor" : "Disobeying Captain's orders", "client" : "Captain Adama", "ship" : "Demetrius", "reward" : 1000, "hunters" : [ "Apollo" ], "captured" : true }
 
+MongoDB Enterprise atlas-2b9nl4-shard-0:PRIMARY> db.bounties.find( { ship: 'Millennium Falcon' }).pretty()
+{
+	"_id" : ObjectId("60dcfc6d919f4e2f2cb83917"),
+	"name" : "Han Solo",
+	"wantedFor" : "Owing money",
+	"client" : "Jabba the Hut",
+	"reward" : 1000000,
+	"ship" : "Millennium Falcon",
+	"hunters" : [
+		"Bobba Fett",
+		"Dengar",
+		"IG-88",
+		"Zuckuss",
+		"Greedo",
+		"Bossk",
+		"4-LOM"
+	],
+	"captured" : false
+}
+
