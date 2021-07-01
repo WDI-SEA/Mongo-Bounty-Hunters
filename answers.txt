@@ -1,1 +1,79 @@
 Please replace this text with ~50 lines of terminal history.
+> db.bounties.find({ client: "Time Bureau" })
+{ "_id" : ObjectId("5e65ca8ccf4411230a4a06b6"), "name" : "Sara Lance", "wantedFor" : "Screwing up the timeline, causing anachronisms", "client" : "Time Bureau", "reward" : 50000, "ship" : "Waverider", "hunters" : [ "Chronos" ], "captured" : false }
+> db.bounties.find({ captured: true })
+{ "_id" : ObjectId("5e65ca8ccf4411230a4a06b8"), "name" : "Starbuck", "wantedFor" : "Disobeying Captain's orders", "client" : "Captain Adama", "ship" : "Demetrius", "reward" : 1000, "hunters" : [ "Apollo" ], "captured" : true }
+> db.bounties.findAll()
+2020-03-08T21:58:04.070-0700 E  QUERY    [js] uncaught exception: TypeError: db.bounties.findAll is not a function :
+@(shell):1:1
+> db.bounties.find()
+{ "_id" : ObjectId("5e65ca78cf4411230a4a06b3"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 1000000, "ship" : "Millennium Falcon", "hunters" : [ "Bobba Fett", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false }
+{ "_id" : ObjectId("5e65ca8ccf4411230a4a06b4"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 1000000, "ship" : "Millennium Falcon", "hunters" : [ "Bobba Fett", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false }
+{ "_id" : ObjectId("5e65ca8ccf4411230a4a06b5"), "name" : "Rocket", "wantedFor" : "Stealing Batteries", "client" : "Ayesha High Priestess of the Sovereign", "reward" : 1000000000, "ship" : "The Milano", "hunters" : [ "Nebula", "Ravagers" ], "captured" : false }
+{ "_id" : ObjectId("5e65ca8ccf4411230a4a06b6"), "name" : "Sara Lance", "wantedFor" : "Screwing up the timeline, causing anachronisms", "client" : "Time Bureau", "reward" : 50000, "ship" : "Waverider", "hunters" : [ "Chronos" ], "captured" : false }
+{ "_id" : ObjectId("5e65ca8ccf4411230a4a06b7"), "name" : "Malcolm Reynolds", "wantedFor" : "Aiming to misbehave", "client" : "The Alliance", "reward" : 40000, "ship" : "Serenity", "hunters" : [ "Jubal Early" ], "captured" : false }
+{ "_id" : ObjectId("5e65ca8ccf4411230a4a06b8"), "name" : "Starbuck", "wantedFor" : "Disobeying Captain's orders", "client" : "Captain Adama", "ship" : "Demetrius", "reward" : 1000, "hunters" : [ "Apollo" ], "captured" : true }
+> db.bounties.find({ name: "Han Solo" })
+{ "_id" : ObjectId("5e65ca78cf4411230a4a06b3"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 1000000, "ship" : "Millennium Falcon", "hunters" : [ "Bobba Fett", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false }
+{ "_id" : ObjectId("5e65ca8ccf4411230a4a06b4"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 1000000, "ship" : "Millennium Falcon", "hunters" : [ "Bobba Fett", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false }
+> db.bounties.find({ name })
+2020-03-08T22:00:36.666-0700 E  QUERY    [js] uncaught exception: ReferenceError: name is not defined :
+@(shell):1:20
+> db. bounties.remove({ name: "Starbuck" })
+WriteResult({ "nRemoved" : 1 })
+> db.bounties.update({ name: "Sara Lance"}, {$set { name: "White Canary"}})
+2020-03-08T22:07:00.561-0700 E  QUERY    [js] uncaught exception: SyntaxError: missing : after property id :
+@(shell):1:48
+> db.bounties.update({ name: "Sara Lance"}, {$set: { name: "White Canary"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.bounties.update({ name: "Rocket"}, {$set: { ship: "The Milano 2"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.bounties. find({ reward: {$gt: 100000}})
+{ "_id" : ObjectId("5e65ca8ccf4411230a4a06b4"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 1000000, "ship" : "Millennium Falcon", "hunters" : [ "Bobba Fett", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false }
+{ "_id" : ObjectId("5e65ca8ccf4411230a4a06b5"), "name" : "Rocket", "wantedFor" : "Stealing Batteries", "client" : "Ayesha High Priestess of the Sovereign", "reward" : 1000000000, "ship" : "The Milano 2", "hunters" : [ "Nebula", "Ravagers" ], "captured" : false }
+> db.bounties. find({ reward: {$lt: 1000}})
+2020-03-08T22:15:40.927-0700 E  QUERY    [js] uncaught exception: SyntaxError: expected expression, got ')' :
+@(shell):1:0
+> db.bounties.find({ hunter: ["Nebula"]})
+> db.bounties.find()
+{ "_id" : ObjectId("5e65ca78cf4411230a4a06b3"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 1000000, "ship" : "Millennium Falcon", "hunters" : [ "Bobba Fett", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false }
+{ "_id" : ObjectId("5e65ca8ccf4411230a4a06b4"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 1000000, "ship" : "Millennium Falcon", "hunters" : [ "Bobba Fett", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false }
+{ "_id" : ObjectId("5e65ca8ccf4411230a4a06b5"), "name" : "Rocket", "wantedFor" : "Stealing Batteries", "client" : "Ayesha High Priestess of the Sovereign", "reward" : 1000000000, "ship" : "The Milano 2", "hunters" : [ "Nebula", "Ravagers" ], "captured" : false }
+{ "_id" : ObjectId("5e65ca8ccf4411230a4a06b6"), "name" : "White Canary", "wantedFor" : "Screwing up the timeline, causing anachronisms", "client" : "Time Bureau", "reward" : 50000, "ship" : "Waverider", "hunters" : [ "Chronos" ], "captured" : false }
+{ "_id" : ObjectId("5e65ca8ccf4411230a4a06b7"), "name" : "Malcolm Reynolds", "wantedFor" : "Aiming to misbehave", "client" : "The Alliance", "reward" : 40000, "ship" : "Serenity", "hunters" : [ "Jubal Early" ], "captured" : false }
+> db.bounties.find({ hunters: ["Nebula"]})
+> db.bounties.find({ hunters: "Nebula"})
+{ "_id" : ObjectId("5e65ca8ccf4411230a4a06b5"), "name" : "Rocket", "wantedFor" : "Stealing Batteries", "client" : "Ayesha High Priestess of the Sovereign", "reward" : 1000000000, "ship" : "The Milano 2", "hunters" : [ "Nebula", "Ravagers" ], "captured" : false }
+> db.bounties.find({ $or: [{ ship: "Waverider"}, {ship: "Serenity"}]})
+{ "_id" : ObjectId("5e65ca8ccf4411230a4a06b6"), "name" : "White Canary", "wantedFor" : "Screwing up the timeline, causing anachronisms", "client" : "Time Bureau", "reward" : 50000, "ship" : "Waverider", "hunters" : [ "Chronos" ], "captured" : false }
+{ "_id" : ObjectId("5e65ca8ccf4411230a4a06b7"), "name" : "Malcolm Reynolds", "wantedFor" : "Aiming to misbehave", "client" : "The Alliance", "reward" : 40000, "ship" : "Serenity", "hunters" : [ "Jubal Early" ], "captured" : false }
+> db.bounties.find({ captured: false, client: "Ayesha High Priestess of the Sovereign"})
+{ "_id" : ObjectId("5e65ca8ccf4411230a4a06b5"), "name" : "Rocket", "wantedFor" : "Stealing Batteries", "client" : "Ayesha High Priestess of the Sovereign", "reward" : 1000000000, "ship" : "The Milano 2", "hunters" : [ "Nebula", "Ravagers" ], "captured" : false }
+> db.bounties.update({$inc: { reward: 333333 }})
+2020-03-09T08:11:36.212-0700 E  QUERY    [js] uncaught exception: Error: need an update object or pipeline :
+DBCollection.prototype._parseUpdate@src/mongo/shell/collection.js:446:15
+DBCollection.prototype.update@src/mongo/shell/collection.js:492:18
+@(shell):1:1
+> db.bounties.update({}, {$inc: {reward: 333333}, {multi: true}})
+2020-03-09T08:56:57.448-0700 E  QUERY    [js] uncaught exception: SyntaxError: expected property name, got '{' :
+@(shell):1:48
+> db.bounties.update({}, {$inc: {reward: 333333}}, {multi: true})
+WriteResult({ "nMatched" : 5, "nUpserted" : 0, "nModified" : 5 })
+> db.bounties.update({}, {$mul: {reward:2}}, {multi: true})
+WriteResult({ "nMatched" : 5, "nUpserted" : 0, "nModified" : 5 })
+> db.bounties.update({ name: "Malcolm Reynolds"},{$push: { hunters: "Bobba Fett"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.bounties.update({ ship: "Waverider"},{$push: { hunters: "Bobba Fett"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.bounties.update({ name: "Han Solo"}, {$set: { lastSeen: "yesterday"}}, {$upsert: true})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.bounties.update({}, {$set: { lastSeen: "last week"}}, {$upsert: false})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.bounties.update({}, {$set: { lastSeen: "last week"}}, {multi: true}, {$upsert: false})
+2020-03-09T09:23:38.966-0700 E  QUERY    [js] uncaught exception: Error: Fourth argument must be empty when specifying upsert and multi with an object. :
+DBCollection.prototype._parseUpdate@src/mongo/shell/collection.js:456:19
+DBCollection.prototype.update@src/mongo/shell/collection.js:492:18
+@(shell):1:1
+> db.bounties.updateMany({}, {$set: { lastSeen: "last week"}}, {$upsert: false})
+{ "acknowledged" : true, "matchedCount" : 5, "modifiedCount" : 4 }
+> 
