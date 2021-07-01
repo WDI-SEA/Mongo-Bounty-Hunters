@@ -1,4 +1,4 @@
-sorry i think i did the bonus::
+Im sorry i did this in the vscode terminal 
 
 MongoDB Enterprise atlas-sjeydb-shard-0:PRIMARY> db.bounties.find()
 { "_id" : ObjectId("60dcfc0d1c9573a95b84aa87"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 1000000, "ship" : "Millennium Falcon", "hunters" : [ "Bobba Fett", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false }
