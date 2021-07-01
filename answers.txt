@@ -1,1 +1,135 @@
-Please replace this text with ~50 lines of terminal history.
+sorry i think i did the bonus::
+
+MongoDB Enterprise atlas-sjeydb-shard-0:PRIMARY> db.bounties.find()
+{ "_id" : ObjectId("60dcfc0d1c9573a95b84aa87"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 1000000, "ship" : "Millennium Falcon", "hunters" : [ "Bobba Fett", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false }
+{ "_id" : ObjectId("60dcfc1a1c9573a95b84aa88"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 1000000, "ship" : "Millennium Falcon", "hunters" : [ "Bobba Fett", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false }
+{ "_id" : ObjectId("60dcfc1a1c9573a95b84aa89"), "name" : "Rocket", "wantedFor" : "Stealing Batteries", "client" : "Ayesha High Priestess of the Sovereign", "reward" : 1000000000, "ship" : "The Milano", "hunters" : [ "Nebula", "Ravagers" ], "captured" : false }
+{ "_id" : ObjectId("60dcfc1a1c9573a95b84aa8a"), "name" : "Sara Lance", "wantedFor" : "Screwing up the timeline, causing anachronisms", "client" : "Time Bureau", "reward" : 50000, "ship" : "Waverider", "hunters" : [ "Chronos" ], "captured" : false }
+{ "_id" : ObjectId("60dcfc1a1c9573a95b84aa8b"), "name" : "Malcolm Reynolds", "wantedFor" : "Aiming to misbehave", "client" : "The Alliance", "reward" : 40000, "ship" : "Serenity", "hunters" : [ "Jubal Early" ], "captured" : false }
+{ "_id" : ObjectId("60dcfc1a1c9573a95b84aa8c"), "name" : "Starbuck", "wantedFor" : "Disobeying Captain's orders", "client" : "Captain Adama", "ship" : "Demetrius", "reward" : 1000, "hunters" : [ "Apollo" ], "captured" : true }
+MongoDB Enterprise atlas-sjeydb-shard-0:PRIMARY> db.bounties.find({ client: "Time Bureau"})
+{ "_id" : ObjectId("60dcfc1a1c9573a95b84aa8a"), "name" : "Sara Lance", "wantedFor" : "Screwing up the timeline, causing anachronisms", "client" : "Time Bureau", "reward" : 50000, "ship" : "Waverider", "hunters" : [ "Chronos" ], "captured" : false }
+MongoDB Enterprise atlas-sjeydb-shard-0:PRIMARY> db.bounties.find({captured: true})
+{ "_id" : ObjectId("60dcfc1a1c9573a95b84aa8c"), "name" : "Starbuck", "wantedFor" : "Disobeying Captain's orders", "client" : "Captain Adama", "ship" : "Demetrius", "reward" : 1000, "hunters" : [ "Apollo" ], "captured" : true }
+MongoDB Enterprise atlas-sjeydb-shard-0:PRIMARY> db.bounties.find({reward: {$gt: 2000}})
+{ "_id" : ObjectId("60dcfc0d1c9573a95b84aa87"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 1000000, "ship" : "Millennium Falcon", "hunters" : [ "Bobba Fett", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false }
+{ "_id" : ObjectId("60dcfc1a1c9573a95b84aa88"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 1000000, "ship" : "Millennium Falcon", "hunters" : [ "Bobba Fett", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false }
+{ "_id" : ObjectId("60dcfc1a1c9573a95b84aa89"), "name" : "Rocket", "wantedFor" : "Stealing Batteries", "client" : "Ayesha High Priestess of the Sovereign", "reward" : 1000000000, "ship" : "The Milano", "hunters" : [ "Nebula", "Ravagers" ], "captured" : false }
+{ "_id" : ObjectId("60dcfc1a1c9573a95b84aa8a"), "name" : "Sara Lance", "wantedFor" : "Screwing up the timeline, causing anachronisms", "client" : "Time Bureau", "reward" : 50000, "ship" : "Waverider", "hunters" : [ "Chronos" ], "captured" : false }
+{ "_id" : ObjectId("60dcfc1a1c9573a95b84aa8b"), "name" : "Malcolm Reynolds", "wantedFor" : "Aiming to misbehave", "client" : "The Alliance", "reward" : 40000, "ship" : "Serenity", "hunters" : [ "Jubal Early" ], "captured" : false }
+MongoDB Enterprise atlas-sjeydb-shard-0:PRIMARY> db.bounties.find({name: }, {name: })
+uncaught exception: SyntaxError: expected expression, got '}' :
+@(shell):1:24
+MongoDB Enterprise atlas-sjeydb-shard-0:PRIMARY> db.bounties.find({name: {$exists})
+... db.bounties.find({name: {$exists}})
+... 
+... }
+uncaught exception: SyntaxError: missing } after property list :
+@(shell):1:33
+MongoDB Enterprise atlas-sjeydb-shard-0:PRIMARY> db.bounties.find({name: {$exists}})
+uncaught exception: ReferenceError: $exists is not defined :
+@(shell):1:26
+MongoDB Enterprise atlas-sjeydb-shard-0:PRIMARY> db.bounties.remove({name: "Starbuck"})
+WriteResult({ "nRemoved" : 1 })
+MongoDB Enterprise atlas-sjeydb-shard-0:PRIMARY> db.bounties.find({name: "Starbuck"})
+MongoDB Enterprise atlas-sjeydb-shard-0:PRIMARY> db.bounties.update({name: "Sara Lance"}, {$set: {name: "White Canary"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+MongoDB Enterprise atlas-sjeydb-shard-0:PRIMARY> db.bounties.update({name: "Rocket"}, {$set: {ship: "The Milano 2"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+MongoDB Enterprise atlas-sjeydb-shard-0:PRIMARY> db.bounties.find({bounty: {$gt: 100000}})
+MongoDB Enterprise atlas-sjeydb-shard-0:PRIMARY> db.bounties.find({reward: {$gt: 100000}})
+{ "_id" : ObjectId("60dcfc0d1c9573a95b84aa87"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 1000000, "ship" : "Millennium Falcon", "hunters" : [ "Bobba Fett", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false }
+{ "_id" : ObjectId("60dcfc1a1c9573a95b84aa88"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 1000000, "ship" : "Millennium Falcon", "hunters" : [ "Bobba Fett", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false }
+{ "_id" : ObjectId("60dcfc1a1c9573a95b84aa89"), "name" : "Rocket", "wantedFor" : "Stealing Batteries", "client" : "Ayesha High Priestess of the Sovereign", "reward" : 1000000000, "ship" : "The Milano 2", "hunters" : [ "Nebula", "Ravagers" ], "captured" : false }
+MongoDB Enterprise atlas-sjeydb-shard-0:PRIMARY> db.bounties.find({reward: {$lt: 1000}})
+MongoDB Enterprise atlas-sjeydb-shard-0:PRIMARY> db.bounties.find({reward: {$lte: 1000}})
+MongoDB Enterprise atlas-sjeydb-shard-0:PRIMARY> db.bounties.find({hunters: "Nebula"})
+{ "_id" : ObjectId("60dcfc1a1c9573a95b84aa89"), "name" : "Rocket", "wantedFor" : "Stealing Batteries", "client" : "Ayesha High Priestess of the Sovereign", "reward" : 1000000000, "ship" : "The Milano 2", "hunters" : [ "Nebula", "Ravagers" ], "captured" : false }
+MongoDB Enterprise atlas-sjeydb-shard-0:PRIMARY> db.bounties.find({$or: [ {ship: "Waverider"}, {ship: "Serenity} ]})
+uncaught exception: SyntaxError: "" literal not terminated before end of script :
+@(shell):1:67
+MongoDB Enterprise atlas-sjeydb-shard-0:PRIMARY> db.bounties.find({$or: [ {ship: "Waverider"}, {ship: "Serenity"} ]})
+{ "_id" : ObjectId("60dcfc1a1c9573a95b84aa8a"), "name" : "White Canary", "wantedFor" : "Screwing up the timeline, causing anachronisms", "client" : "Time Bureau", "reward" : 50000, "ship" : "Waverider", "hunters" : [ "Chronos" ], "captured" : false }
+{ "_id" : ObjectId("60dcfc1a1c9573a95b84aa8b"), "name" : "Malcolm Reynolds", "wantedFor" : "Aiming to misbehave", "client" : "The Alliance", "reward" : 40000, "ship" : "Serenity", "hunters" : [ "Jubal Early" ], "captured" : false }
+MongoDB Enterprise atlas-sjeydb-shard-0:PRIMARY> db.bounties.find({$and: [ {captured: false}, {client: "Ayesha High Priestess of the Sovereign"} ]})
+{ "_id" : ObjectId("60dcfc1a1c9573a95b84aa89"), "name" : "Rocket", "wantedFor" : "Stealing Batteries", "client" : "Ayesha High Priestess of the Sovereign", "reward" : 1000000000, "ship" : "The Milano 2", "hunters" : [ "Nebula", "Ravagers" ], "captured" : false }
+MongoDB Enterprise atlas-sjeydb-shard-0:PRIMARY> db.bounties.find({}, {name:1})
+{ "_id" : ObjectId("60dcfc0d1c9573a95b84aa87"), "name" : "Han Solo" }
+{ "_id" : ObjectId("60dcfc1a1c9573a95b84aa88"), "name" : "Han Solo" }
+{ "_id" : ObjectId("60dcfc1a1c9573a95b84aa89"), "name" : "Rocket" }
+{ "_id" : ObjectId("60dcfc1a1c9573a95b84aa8a"), "name" : "White Canary" }
+{ "_id" : ObjectId("60dcfc1a1c9573a95b84aa8b"), "name" : "Malcolm Reynolds" }
+MongoDB Enterprise atlas-sjeydb-shard-0:PRIMARY> db.bounties.update({}, {$inc: {reward: 333333}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+MongoDB Enterprise atlas-sjeydb-shard-0:PRIMARY> db.bounties.find({}, {reward:1})
+{ "_id" : ObjectId("60dcfc0d1c9573a95b84aa87"), "reward" : 1333333 }
+{ "_id" : ObjectId("60dcfc1a1c9573a95b84aa88"), "reward" : 1000000 }
+{ "_id" : ObjectId("60dcfc1a1c9573a95b84aa89"), "reward" : 1000000000 }
+{ "_id" : ObjectId("60dcfc1a1c9573a95b84aa8a"), "reward" : 50000 }
+{ "_id" : ObjectId("60dcfc1a1c9573a95b84aa8b"), "reward" : 40000 }
+MongoDB Enterprise atlas-sjeydb-shard-0:PRIMARY> db.bounties.find({reward:1333333})
+{ "_id" : ObjectId("60dcfc0d1c9573a95b84aa87"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 1333333, "ship" : "Millennium Falcon", "hunters" : [ "Bobba Fett", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false }
+MongoDB Enterprise atlas-sjeydb-shard-0:PRIMARY> db.bounties.update({reward:1333333}, {$inc: {reward: -333333}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+MongoDB Enterprise atlas-sjeydb-shard-0:PRIMARY> db.bounties.update({$inc: {reward: 333333}})
+uncaught exception: Error: need an update object or pipeline :
+DBCollection.prototype._parseUpdate@src/mongo/shell/collection.js:451:15
+DBCollection.prototype.update@src/mongo/shell/collection.js:497:18
+@(shell):1:1
+MongoDB Enterprise atlas-sjeydb-shard-0:PRIMARY> db.bounties.update({},{$inc: { reward: 333333}},{multi:true})
+uncaught exception: Error: error doing query: failed: network error while attempting to run command 'update' on host 'cluster0-shard-00-01.qe8tl.mongodb.net:27017'  :
+DB.prototype.runCommand@src/mongo/shell/db.js:169:19
+DBCollection.prototype._dbCommand@src/mongo/shell/collection.js:176:16
+executeBatch@src/mongo/shell/bulk_api.js:912:22
+Bulk/this.execute@src/mongo/shell/bulk_api.js:1163:21
+DBCollection.prototype.update@src/mongo/shell/collection.js:538:22
+@(shell):1:1
+MongoDB Enterprise atlas-sjeydb-shard-0:PRIMARY> db.bounties.updateMany({},{$inc: { reward: 333333}})
+{ "acknowledged" : true, "matchedCount" : 5, "modifiedCount" : 5 }
+MongoDB Enterprise atlas-sjeydb-shard-0:PRIMARY> db.bounties.updateMany({},{$mul: { reward: 2}})
+{ "acknowledged" : true, "matchedCount" : 5, "modifiedCount" : 5 }
+MongoDB Enterprise atlas-sjeydb-shard-0:PRIMARY> db.bounties.find({}, {reward:1})
+{ "_id" : ObjectId("60dcfc0d1c9573a95b84aa87"), "reward" : 2666666 }
+{ "_id" : ObjectId("60dcfc1a1c9573a95b84aa88"), "reward" : 2666666 }
+{ "_id" : ObjectId("60dcfc1a1c9573a95b84aa89"), "reward" : 2000666666 }
+{ "_id" : ObjectId("60dcfc1a1c9573a95b84aa8a"), "reward" : 766666 }
+{ "_id" : ObjectId("60dcfc1a1c9573a95b84aa8b"), "reward" : 746666 }
+MongoDB Enterprise atlas-sjeydb-shard-0:PRIMARY> db.bounties.insert({name: "Malcolm Reynolds", hunter:"Bobba Fett})
+
+uncaught exception: SyntaxError: "" literal not terminated before end of script :
+@(shell):1:66
+MongoDB Enterprise atlas-sjeydb-shard-0:PRIMARY> db.bounties.insert({name: "Malcolm Reynolds", hunter:"Bobba Fett"})
+WriteResult({ "nInserted" : 1 })
+MongoDB Enterprise atlas-sjeydb-shard-0:PRIMARY> db.bounties.insert({ship: "Waverider", hunter:"Bobba Fett"})
+WriteResult({ "nInserted" : 1 })
+MongoDB Enterprise atlas-sjeydb-shard-0:PRIMARY> db.bounties.update({}, {$unset: {hunter: "Dengar" }}, false, true )
+WriteResult({ "nMatched" : 7, "nUpserted" : 0, "nModified" : 2 })
+MongoDB Enterprise atlas-sjeydb-shard-0:PRIMARY> db.bounties.find()
+{ "_id" : ObjectId("60dcfc0d1c9573a95b84aa87"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 2666666, "ship" : "Millennium Falcon", "hunters" : [ "Bobba Fett", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false }
+{ "_id" : ObjectId("60dcfc1a1c9573a95b84aa88"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 2666666, "ship" : "Millennium Falcon", "hunters" : [ "Bobba Fett", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false }
+{ "_id" : ObjectId("60dcfc1a1c9573a95b84aa89"), "name" : "Rocket", "wantedFor" : "Stealing Batteries", "client" : "Ayesha High Priestess of the Sovereign", "reward" : 2000666666, "ship" : "The Milano 2", "hunters" : [ "Nebula", "Ravagers" ], "captured" : false }
+{ "_id" : ObjectId("60dcfc1a1c9573a95b84aa8a"), "name" : "White Canary", "wantedFor" : "Screwing up the timeline, causing anachronisms", "client" : "Time Bureau", "reward" : 766666, "ship" : "Waverider", "hunters" : [ "Chronos" ], "captured" : false }
+{ "_id" : ObjectId("60dcfc1a1c9573a95b84aa8b"), "name" : "Malcolm Reynolds", "wantedFor" : "Aiming to misbehave", "client" : "The Alliance", "reward" : 746666, "ship" : "Serenity", "hunters" : [ "Jubal Early" ], "captured" : false }
+{ "_id" : ObjectId("60dde2f91c9573a95b84aa8d"), "name" : "Malcolm Reynolds" }
+{ "_id" : ObjectId("60dde32c1c9573a95b84aa8e"), "ship" : "Waverider" }
+MongoDB Enterprise atlas-sjeydb-shard-0:PRIMARY> db.bounties.update({}, {$unset: {hunter: "Dengar" }}, {multi: true})
+WriteResult({ "nMatched" : 7, "nUpserted" : 0, "nModified" : 0 })
+MongoDB Enterprise atlas-sjeydb-shard-0:PRIMARY> db.bounties.find()
+{ "_id" : ObjectId("60dcfc0d1c9573a95b84aa87"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 2666666, "ship" : "Millennium Falcon", "hunters" : [ "Bobba Fett", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false }
+{ "_id" : ObjectId("60dcfc1a1c9573a95b84aa88"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 2666666, "ship" : "Millennium Falcon", "hunters" : [ "Bobba Fett", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false }
+{ "_id" : ObjectId("60dcfc1a1c9573a95b84aa89"), "name" : "Rocket", "wantedFor" : "Stealing Batteries", "client" : "Ayesha High Priestess of the Sovereign", "reward" : 2000666666, "ship" : "The Milano 2", "hunters" : [ "Nebula", "Ravagers" ], "captured" : false }
+{ "_id" : ObjectId("60dcfc1a1c9573a95b84aa8a"), "name" : "White Canary", "wantedFor" : "Screwing up the timeline, causing anachronisms", "client" : "Time Bureau", "reward" : 766666, "ship" : "Waverider", "hunters" : [ "Chronos" ], "captured" : false }
+{ "_id" : ObjectId("60dcfc1a1c9573a95b84aa8b"), "name" : "Malcolm Reynolds", "wantedFor" : "Aiming to misbehave", "client" : "The Alliance", "reward" : 746666, "ship" : "Serenity", "hunters" : [ "Jubal Early" ], "captured" : false }
+{ "_id" : ObjectId("60dde2f91c9573a95b84aa8d"), "name" : "Malcolm Reynolds" }
+{ "_id" : ObjectId("60dde32c1c9573a95b84aa8e"), "ship" : "Waverider" }
+MongoDB Enterprise atlas-sjeydb-shard-0:PRIMARY> db.bounties.update({}, {$unset: {hunters: "Dengar" }}, {multi: true})
+WriteResult({ "nMatched" : 7, "nUpserted" : 0, "nModified" : 5 })
+MongoDB Enterprise atlas-sjeydb-shard-0:PRIMARY> db.bounties.find()
+{ "_id" : ObjectId("60dcfc0d1c9573a95b84aa87"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 2666666, "ship" : "Millennium Falcon", "captured" : false }
+{ "_id" : ObjectId("60dcfc1a1c9573a95b84aa88"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 2666666, "ship" : "Millennium Falcon", "captured" : false }
+{ "_id" : ObjectId("60dcfc1a1c9573a95b84aa89"), "name" : "Rocket", "wantedFor" : "Stealing Batteries", "client" : "Ayesha High Priestess of the Sovereign", "reward" : 2000666666, "ship" : "The Milano 2", "captured" : false }
+{ "_id" : ObjectId("60dcfc1a1c9573a95b84aa8a"), "name" : "White Canary", "wantedFor" : "Screwing up the timeline, causing anachronisms", "client" : "Time Bureau", "reward" : 766666, "ship" : "Waverider", "captured" : false }
+{ "_id" : ObjectId("60dcfc1a1c9573a95b84aa8b"), "name" : "Malcolm Reynolds", "wantedFor" : "Aiming to misbehave", "client" : "The Alliance", "reward" : 746666, "ship" : "Serenity", "captured" : false }
+{ "_id" : ObjectId("60dde2f91c9573a95b84aa8d"), "name" : "Malcolm Reynolds" }
+{ "_id" : ObjectId("60dde32c1c9573a95b84aa8e"), "ship" : "Waverider" }
+MongoDB Enterprise atlas-sjeydb-shard-0:PRIMARY> 
