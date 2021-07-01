@@ -21,3 +21,140 @@ db.bounties.remove({name: "Han Solo"},{justOne:true})
 ;
 db.bounties.update({name: "Sara Lance"}, {$set: {name: "White Canary"}})
 db.bounties.update({name: "Rocket"}, {$set: {ship: "The Milano 2"}})
+
+// YESTERDAY'S PROGRESS
+
+MongoDB Enterprise atlas-tthnwt-shard-0:PRIMARY> db.bounties.find({reward: {$gt: 100000}})
+
+{ "_id" : ObjectId("60dcfcaa26f4c7eae9af6111"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 1000000, "ship" : "Millennium Falcon", "hunters" : [ "Bobba Fett", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false }
+{ "_id" : ObjectId("60dcfcaa26f4c7eae9af6112"), "name" : "Rocket", "wantedFor" : "Stealing Batteries", "client" : "Ayesha High Priestess of the Sovereign", "reward" : 1000000000, "ship" : "The Milano 2", "hunters" : [ "Nebula", "Ravagers" ], "captured" : false }
+MongoDB Enterprise atlas-tthnwt-shard-0:PRIMARY> db.bounties.find({reward: {$lt: 1000}})
+MongoDB Enterprise atlas-tthnwt-shard-0:PRIMARY> db.bounties.find({hunters: "Nebula"})
+{ "_id" : ObjectId("60dcfcaa26f4c7eae9af6112"), "name" : "Rocket", "wantedFor" : "Stealing Batteries", "client" : "Ayesha High Priestess of the Sovereign", "reward" : 1000000000, "ship" : "The Milano 2", "hunters" : [ "Nebula", "Ravagers" ], "captured" : false }
+MongoDB Enterprise atlas-tthnwt-shard-0:PRIMARY> db.bounties.find({
+... $or: [
+... {captured: false},
+... {name: "Han Solo"}
+... ]
+... })
+{ "_id" : ObjectId("60dcfcaa26f4c7eae9af6111"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 1000000, "ship" : "Millennium Falcon", "hunters" : [ "Bobba Fett", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false }
+{ "_id" : ObjectId("60dcfcaa26f4c7eae9af6112"), "name" : "Rocket", "wantedFor" : "Stealing Batteries", "client" : "Ayesha High Priestess of the Sovereign", "reward" : 1000000000, "ship" : "The Milano 2", "hunters" : [ "Nebula", "Ravagers" ], "captured" : false }
+{ "_id" : ObjectId("60dcfcaa26f4c7eae9af6113"), "name" : "White Canary", "wantedFor" : "Screwing up the timeline, causing anachronisms", "client" : "Time Bureau", "reward" : 50000, "ship" : "Waverider", "hunters" : [ "Chronos" ], "captured" : false }
+{ "_id" : ObjectId("60dcfcaa26f4c7eae9af6114"), "name" : "Malcolm Reynolds", "wantedFor" : "Aiming to misbehave", "client" : "The Alliance", "reward" : 40000, "ship" : "Serenity", "hunters" : [ "Jubal Early" ], "captured" : false }
+MongoDB Enterprise atlas-tthnwt-shard-0:PRIMARY> db.bounties.find({
+... $or: [
+... {ship: "Waverider"},
+... {ship: "Serenity"}
+... ]})
+{ "_id" : ObjectId("60dcfcaa26f4c7eae9af6113"), "name" : "White Canary", "wantedFor" : "Screwing up the timeline, causing anachronisms", "client" : "Time Bureau", "reward" : 50000, "ship" : "Waverider", "hunters" : [ "Chronos" ], "captured" : false }
+{ "_id" : ObjectId("60dcfcaa26f4c7eae9af6114"), "name" : "Malcolm Reynolds", "wantedFor" : "Aiming to misbehave", "client" : "The Alliance", "reward" : 40000, "ship" : "Serenity", "hunters" : [ "Jubal Early" ], "captured" : false }
+MongoDB Enterprise atlas-tthnwt-shard-0:PRIMARY> db.bounties.find({
+... $and: [
+... {captured: false},
+... {client: "Ayesha High Priestess of the Sovereign"}
+... ]})
+{ "_id" : ObjectId("60dcfcaa26f4c7eae9af6112"), "name" : "Rocket", "wantedFor" : "Stealing Batteries", "client" : "Ayesha High Priestess of the Sovereign", "reward" : 1000000000, "ship" : "The Milano 2", "hunters" : [ "Nebula", "Ravagers" ], "captured" : false }
+MongoDB Enterprise atlas-tthnwt-shard-0:PRIMARY> db.bounties.update(
+... {name: {$exists: true}},
+... {$inc: {reward: 333333}}
+... )
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+MongoDB Enterprise atlas-tthnwt-shard-0:PRIMARY> db.bounties.find()
+{ "_id" : ObjectId("60dcfcaa26f4c7eae9af6111"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 1333333, "ship" : "Millennium Falcon", "hunters" : [ "Bobba Fett", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false }
+{ "_id" : ObjectId("60dcfcaa26f4c7eae9af6112"), "name" : "Rocket", "wantedFor" : "Stealing Batteries", "client" : "Ayesha High Priestess of the Sovereign", "reward" : 1000000000, "ship" : "The Milano 2", "hunters" : [ "Nebula", "Ravagers" ], "captured" : false }
+{ "_id" : ObjectId("60dcfcaa26f4c7eae9af6113"), "name" : "White Canary", "wantedFor" : "Screwing up the timeline, causing anachronisms", "client" : "Time Bureau", "reward" : 50000, "ship" : "Waverider", "hunters" : [ "Chronos" ], "captured" : false }
+{ "_id" : ObjectId("60dcfcaa26f4c7eae9af6114"), "name" : "Malcolm Reynolds", "wantedFor" : "Aiming to misbehave", "client" : "The Alliance", "reward" : 40000, "ship" : "Serenity", "hunters" : [ "Jubal Early" ], "captured" : false }
+MongoDB Enterprise atlas-tthnwt-shard-0:PRIMARY> db.bounties.update({},
+... {$inc: {reward: 333333}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+MongoDB Enterprise atlas-tthnwt-shard-0:PRIMARY> db.bounties.find()
+{ "_id" : ObjectId("60dcfcaa26f4c7eae9af6111"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 1666666, "ship" : "Millennium Falcon", "hunters" : [ "Bobba Fett", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false }
+{ "_id" : ObjectId("60dcfcaa26f4c7eae9af6112"), "name" : "Rocket", "wantedFor" : "Stealing Batteries", "client" : "Ayesha High Priestess of the Sovereign", "reward" : 1000000000, "ship" : "The Milano 2", "hunters" : [ "Nebula", "Ravagers" ], "captured" : false }
+{ "_id" : ObjectId("60dcfcaa26f4c7eae9af6113"), "name" : "White Canary", "wantedFor" : "Screwing up the timeline, causing anachronisms", "client" : "Time Bureau", "reward" : 50000, "ship" : "Waverider", "hunters" : [ "Chronos" ], "captured" : false }
+{ "_id" : ObjectId("60dcfcaa26f4c7eae9af6114"), "name" : "Malcolm Reynolds", "wantedFor" : "Aiming to misbehave", "client" : "The Alliance", "reward" : 40000, "ship" : "Serenity", "hunters" : [ "Jubal Early" ], "captured" : false }
+MongoDB Enterprise atlas-tthnwt-shard-0:PRIMARY> db.bounties.updateMany({},
+... {$inc: {reward: 333333}})
+{ "acknowledged" : true, "matchedCount" : 4, "modifiedCount" : 4 }
+MongoDB Enterprise atlas-tthnwt-shard-0:PRIMARY> db.bounties.updateMany({}, {mul: {reward: (2)}})
+uncaught exception: Error: the update operation document must contain atomic operators :
+DBCollection.prototype.updateMany@src/mongo/shell/crud_api.js:655:19
+@(shell):1:1
+MongoDB Enterprise atlas-tthnwt-shard-0:PRIMARY> db.bounties.updateMany({}, {$mul: {reward: (2)}})
+{ "acknowledged" : true, "matchedCount" : 4, "modifiedCount" : 4 }
+MongoDB Enterprise atlas-tthnwt-shard-0:PRIMARY> db.bounties.update({name: "Malcolm Reynolds"},
+... {$push: {hunters: "Bobba Fett"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+MongoDB Enterprise atlas-tthnwt-shard-0:PRIMARY> db.bounties.update({ship: "Waverider"},{$push: {hunters:"Bobba Fett"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+MongoDB Enterprise atlas-tthnwt-shard-0:PRIMARY> db.bounties.update({},{$pop:{hunters: "Dengar"}})
+WriteResult({
+	"nMatched" : 0,
+	"nUpserted" : 0,
+	"nModified" : 0,
+	"writeError" : {
+		"code" : 9,
+		"errmsg" : "Expected a number in: hunters: \"Dengar\""
+	}
+})
+MongoDB Enterprise atlas-tthnwt-shard-0:PRIMARY> db.bounties.updateAll({},{$pop:{hunters:"Dengar"}})
+uncaught exception: TypeError: db.bounties.updateAll is not a function :
+@(shell):1:1
+MongoDB Enterprise atlas-tthnwt-shard-0:PRIMARY> db.bounties.updateMany({},{$pop:{hunters:"Dengar"}})
+WriteError({
+	"index" : 0,
+	"code" : 9,
+	"errmsg" : "Expected a number in: hunters: \"Dengar\"",
+	"op" : {
+		"q" : {
+			
+		},
+		"u" : {
+			"$pop" : {
+				"hunters" : "Dengar"
+			}
+		},
+		"multi" : true,
+		"upsert" : false
+	}
+}) :
+WriteError({
+	"index" : 0,
+	"code" : 9,
+	"errmsg" : "Expected a number in: hunters: \"Dengar\"",
+	"op" : {
+		"q" : {
+			
+		},
+		"u" : {
+			"$pop" : {
+				"hunters" : "Dengar"
+			}
+		},
+		"multi" : true,
+		"upsert" : false
+	}
+})
+WriteError@src/mongo/shell/bulk_api.js:458:48
+mergeBatchResults@src/mongo/shell/bulk_api.js:855:49
+executeBatch@src/mongo/shell/bulk_api.js:919:13
+Bulk/this.execute@src/mongo/shell/bulk_api.js:1163:21
+DBCollection.prototype.updateMany@src/mongo/shell/crud_api.js:690:17
+@(shell):1:1
+MongoDB Enterprise atlas-tthnwt-shard-0:PRIMARY> db.bounties.updateMany({},{$pull:{hunters:"Dengar"}})
+{ "acknowledged" : true, "matchedCount" : 4, "modifiedCount" : 1 }
+MongoDB Enterprise atlas-tthnwt-shard-0:PRIMARY> db.bounties.update({name: "Han Solo},{$set:{lastSeen:"Yesterday"}})
+uncaught exception: SyntaxError: missing } after property list :
+@(shell):1:54
+MongoDB Enterprise atlas-tthnwt-shard-0:PRIMARY> db.bounties.update({name: "Han Solo},{$set:{lastSeen:"Yesterday"}})db.bounties.update({name: "Han Solo"},
+uncaught exception: SyntaxError: missing } after property list :
+@(shell):1:54
+MongoDB Enterprise atlas-tthnwt-shard-0:PRIMARY> 
+MongoDB Enterprise atlas-tthnwt-shard-0:PRIMARY> 
+MongoDB Enterprise atlas-tthnwt-shard-0:PRIMARY> db.bounties.update({name: "Han Solo},{$set:{lastSeen:"Yesterday"}})
+uncaught exception: SyntaxError: missing } after property list :
+@(shell):1:54
+MongoDB Enterprise atlas-tthnwt-shard-0:PRIMARY> 
+MongoDB Enterprise atlas-tthnwt-shard-0:PRIMARY> db.bounties.update({name: "Han Solo},{$set:{lastSeen:"Yesterday"}})tail -50 ~/.dbshell
+uncaught exception: SyntaxError: missing } after property list :
+@(shell):1:54
+MongoDB Enterprise atlas-tthnwt-shard-0:PRIMARY> quit()
