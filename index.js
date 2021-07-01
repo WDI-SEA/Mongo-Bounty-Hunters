@@ -46,7 +46,35 @@ app.get('/bounties', (req, res) => {
     })
 })
 
+// PUT /bounties/:id
+app.put('/bounties/:id', (req, res) => {
+    db.Bounty.findById(req.params.id)
+    .then(e => {
+        e.name = req.body.name
+        e.wantedFor = req.body.wantedFor
+        e.client = req.body.client
+        e.reward = req.body.reward
+        e.ship = req.body.ship
+        e.hunters = req.body.hunters
+        e.captured = req.body.captured
+        e.save()
+        .then(() => {
+            res.redirect('/bounties')
+        })
+    })
+})
 
+// DELETE /bounties/:id
+app.delete('/bounties/:id', (req, res) => {
+    db.Bounty.findByIdAndDelete(req.params.id)
+    .then(deletedBounty => {
+        log(deletedBounty)
+        res.redirect('/bounties')
+    })
+    .catch(err => {
+        log(err)
+    })
+})
 
 // LISTEN - - - - - - - - - - - - - - - - -
 app.listen(PORT, () => {
