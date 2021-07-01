@@ -1,1 +1,57 @@
-Please replace this text with ~50 lines of terminal history.
+> db.bounties.remove({ name: "Starbuck" })
+WriteResult({ "nRemoved" : 1 })
+> db.bounties.distinct("name")
+[ "Flynn Rider", "Han Solo", "Malcolm Reynolds", "Rocket", "Sara Lance" ]
+> db.bounties.remove({ name: "Han Solo" }, { justOne: true })
+WriteResult({ "nRemoved" : 1 })
+> db.bounties.distinct("name")
+[ "Flynn Rider", "Han Solo", "Malcolm Reynolds", "Rocket", "Sara Lance" ]
+> db.bounties.update({ name: "Sara Lance" }, { $set: { name: "White Canary" }})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.bounties.update({ name: "Rocket" }, { $set: { ship: "The Milano 2" }})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.bounties.find({ reward: { $gt: 1000000 }})
+{ "_id" : ObjectId("5e6438f1397c12da7c31db31"), "name" : "Rocket", "wantedFor" : "Stealing Batteries", "client" : "Ayesha High Priestess of the Sovereign", "reward" : 1000000000, "ship" : "The Milano 2", "hunters" : [ "Nebula", "Ravagers" ], "captured" : false }
+> db.bounties.find({ reward: { $lt: 1000 }})
+> db.bounties.find({ reward: { $lte: 1000 }})
+> db.bounties.find({ hunters: { $in: "Nebula" }})
+Error: error: {
+	"ok" : 0,
+	"errmsg" : "$in needs an array",
+	"code" : 2,
+	"codeName" : "BadValue"
+}
+> db.bounties.find({ hunters: "Nebula" })
+{ "_id" : ObjectId("5e6438f1397c12da7c31db31"), "name" : "Rocket", "wantedFor" : "Stealing Batteries", "client" : "Ayesha High Priestess of the Sovereign", "reward" : 1000000000, "ship" : "The Milano 2", "hunters" : [ "Nebula", "Ravagers" ], "captured" : false }
+> db.bounties.find({ $or: [{ ship: "Serenity"}, { ship: "Waverider" }]})
+{ "_id" : ObjectId("5e64395a397c12da7c31db32"), "name" : "White Canary", "wantedFor" : "Screwing up the timeline", "client" : "Time Bureau", "reward" : 50000, "ship" : "Waverider", "hunters" : [ "Chronos" ], "captured" : false }
+{ "_id" : ObjectId("5e6439d1397c12da7c31db33"), "name" : "Malcolm Reynolds", "wantedFor" : "Aiming to misbehave", "client" : "The Alliance", "reward" : 40000, "ship" : "Serenity", "hunters" : [ "Jubal Early" ], "captured" : false }
+> db.bounties.find({ captured: false, client: "Ayesha High Priestess of the Sovereign" })
+{ "_id" : ObjectId("5e6438f1397c12da7c31db31"), "name" : "Rocket", "wantedFor" : "Stealing Batteries", "client" : "Ayesha High Priestess of the Sovereign", "reward" : 1000000000, "ship" : "The Milano 2", "hunters" : [ "Nebula", "Ravagers" ], "captured" : false }
+> db.bounties.update({ $inc: { reward: 333333 }})
+2020-03-07T17:23:15.763-0800 E  QUERY    [js] uncaught exception: Error: need an update object or pipeline :
+DBCollection.prototype._parseUpdate@src/mongo/shell/collection.js:446:15
+DBCollection.prototype.update@src/mongo/shell/collection.js:492:18
+@(shell):1:1
+> db.bounties.update({reward: { $gt: 0}}, { $inc: { reward: 333333 }})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.bounties.update({name: "Han Solo", { $set: { reward: 1000000 }} })
+2020-03-07T17:35:14.865-0800 E  QUERY    [js] uncaught exception: SyntaxError: expected property name, got '{' :
+@(shell):1:38
+> db.bounties.update({name: "Han Solo"}, { $set: { reward: 1000000 }})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.bounties.update({reward: { $gt: 0}}, { $inc: { reward: 333333 }}, { multi: true })
+WriteResult({ "nMatched" : 5, "nUpserted" : 0, "nModified" : 5 })
+> db.bounties.update({reward: { $gt: 0}}, { $mul: { reward: (2) }}, { multi: true })
+WriteResult({ "nMatched" : 5, "nUpserted" : 0, "nModified" : 5 })
+> db.bounties.update({ name: "Malcom Reynolds"}, { $push: { hunters: "Bobba Fett" }})
+WriteResult({ "nMatched" : 0, "nUpserted" : 0, "nModified" : 0 })
+> db.bounties.update({ ship: "Waverider"}, { $push: { hunters: "Bobba Fett" }})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.bounties.update({ name: "Malcolm Reynolds"}, { $push: { hunters: "Bobba Fett" }})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.bounties.update({ name: "Han Solo"}, { $pull: { hunters: "Dengar" }})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.bounties.update({ name: "Han Solo" }, { $set: { lastSeen: "yesterday" }}, { upsert: true })
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.bounties.update({reward: { $gt: 0}}, { $set: { lastSeen: "last week" }}, { multi: true }, { upsert: false })
