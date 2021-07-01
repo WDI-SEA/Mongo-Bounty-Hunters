@@ -5,7 +5,8 @@ const drinkCRUD = async () => {
     try {
         // // CREATE
         // const newBounty = await new db.Bounty({
-        //     name: "Han Solo"
+        //     name: "Han Solo",
+        //     hunters: ["Boogle", "Groogle"]
         // })
         // await newBounty.save()
         // console.log(`new bounty: ${newBounty}`)
