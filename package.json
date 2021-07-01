@@ -1,0 +1,25 @@
+{
+  "name": "mongo-bounty-hunters",
+  "version": "1.0.0",
+  "description": "Title: Intergalactic Bounty Hunter Database<br> Creator: [Karolin Rafalski](https://generalassemb.ly/instructors/karolina-rafalski/11367) <br> Adapted From: [WDI Remote - Mongo Lab](https://git.generalassemb.ly/Web-Development-Immersive-Remote/WDIR-Stan-Lee/blob/master/unit_2/w06d02/student_labs/morning.md) <br>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/terryszhou/Mongo-Bounty-Hunters.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/terryszhou/Mongo-Bounty-Hunters/issues"
+  },
+  "homepage": "https://github.com/terryszhou/Mongo-Bounty-Hunters#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.13.0"
+  }
+}
