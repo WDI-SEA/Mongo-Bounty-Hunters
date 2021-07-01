@@ -1,1 +1,174 @@
 Please replace this text with ~50 lines of terminal history.
+-
+> use hunters
+switched to db hunters
+> db.createCollection('bounties')
+{ "ok" : 1 }
+> db.bounties.insert(
+...   {
+...     name: 'Han Solo',
+...     wantedFor : 'Owing money',
+...     client : 'Jabba the Hut',
+...     reward : 1000000,
+...     ship: 'Millennium Falcon',
+...     hunters :['Bobba Fett', 'Dengar', 'IG-88', 'Zuckuss', 'Greedo', 'Bossk', '4-LOM'],
+...     captured: false
+...   }
+...   )
+WriteResult({ "nInserted" : 1 })
+> db.bounties.insert([
+...   {name: 'Rocket',
+...     wantedFor : 'Stealing Batteries',
+...     client : 'Ayesha High Priestess of the Sovereign',
+...     reward : 1000000000,
+...     ship: 'The Milano',
+...     hunters :['Nebula', 'Ravagers'],
+...     captured: false
+...   },
+...   {
+...     name: 'Sara Lance',
+...     wantedFor : 'Screwing up the timeline, causing anachronisms',
+...     client : 'Time Bureau',
+...     reward : 50000,
+...     ship: 'Waverider',
+...     hunters :['Chronos'],
+...     captured: false
+...   },
+...   {
+...     name: 'Malcolm Reynolds',
+...     wantedFor : 'Aiming to misbehave',
+...     client : 'The Alliance',
+...     reward : 40000,
+...     ship: 'Serenity',
+...     hunters :['Jubal Early'],
+...     captured: false
+...   },
+...   {
+...     name: 'Starbuck',
+...     wantedFor : "Disobeying Captain's orders",
+...     client : 'Captain Adama',
+...     ship: 'Demetrius',
+...     reward : 1000,
+...     hunters :['Apollo'],
+...     captured: true
+...   }
+... ])
+BulkWriteResult({
+	"writeErrors" : [ ],
+	"writeConcernErrors" : [ ],
+	"nInserted" : 4,
+	"nUpserted" : 0,
+	"nMatched" : 0,
+	"nModified" : 0,
+	"nRemoved" : 0,
+	"upserted" : [ ]
+})
+> db.bounties.find()
+{ "_id" : ObjectId("60dcfd3e96f4f07e3fbc82b3"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 1000000, "ship" : "Millennium Falcon", "hunters" : [ "Bobba Fett", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false }
+{ "_id" : ObjectId("60dcfda896f4f07e3fbc82b4"), "name" : "Rocket", "wantedFor" : "Stealing Batteries", "client" : "Ayesha High Priestess of the Sovereign", "reward" : 1000000000, "ship" : "The Milano", "hunters" : [ "Nebula", "Ravagers" ], "captured" : false }
+{ "_id" : ObjectId("60dcfda896f4f07e3fbc82b5"), "name" : "Sara Lance", "wantedFor" : "Screwing up the timeline, causing anachronisms", "client" : "Time Bureau", "reward" : 50000, "ship" : "Waverider", "hunters" : [ "Chronos" ], "captured" : false }
+{ "_id" : ObjectId("60dcfda896f4f07e3fbc82b6"), "name" : "Malcolm Reynolds", "wantedFor" : "Aiming to misbehave", "client" : "The Alliance", "reward" : 40000, "ship" : "Serenity", "hunters" : [ "Jubal Early" ], "captured" : false }
+{ "_id" : ObjectId("60dcfda896f4f07e3fbc82b7"), "name" : "Starbuck", "wantedFor" : "Disobeying Captain's orders", "client" : "Captain Adama", "ship" : "Demetrius", "reward" : 1000, "hunters" : [ "Apollo" ], "captured" : true }
+> .pretty
+uncaught exception: SyntaxError: expected expression, got '.' :
+@(shell):1:0
+> db.bounties.find().pretty
+function() {
+    this._prettyShell = true;
+    return this;
+}
+> db.bounties.find( {client: "Time Bureau" } )
+{ "_id" : ObjectId("60dcfda896f4f07e3fbc82b5"), "name" : "Sara Lance", "wantedFor" : "Screwing up the timeline, causing anachronisms", "client" : "Time Bureau", "reward" : 50000, "ship" : "Waverider", "hunters" : [ "Chronos" ], "captured" : false }
+> db.bounties.find( {"captured":true } )
+{ "_id" : ObjectId("60dcfda896f4f07e3fbc82b7"), "name" : "Starbuck", "wantedFor" : "Disobeying Captain's orders", "client" : "Captain Adama", "ship" : "Demetrius", "reward" : 1000, "hunters" : [ "Apollo" ], "captured" : true }
+> db.bounties.insert(
+... {
+... name: 'Becky Boos',
+... wantedFor: 'Spilling the tea',
+... client: 'Haters',
+... reward: 500000,
+... ship: 'Ford Escape',
+... hunters :['Beliebers', 'Beyhive', 'Devil'],
+... captured: false
+... })
+WriteResult({ "nInserted" : 1 })
+> db.bounties.find( { wantedFor: 'Spilling the tea' } )
+{ "_id" : ObjectId("60dd034596f4f07e3fbc82b8"), "name" : "Becky Boos", "wantedFor" : "Spilling the tea", "client" : "Haters", "reward" : 500000, "ship" : "Ford Escape", "hunters" : [ "Beliebers", "Beyhive", "Devil" ], "captured" : false }
+> db.bounties.find(name)
+uncaught exception: ReferenceError: name is not defined :
+@(shell):1:1
+> db.bounties.find( {name} )
+uncaught exception: ReferenceError: name is not defined :
+@(shell):1:20
+> db.bounties.find()
+{ "_id" : ObjectId("60dcfd3e96f4f07e3fbc82b3"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 1000000, "ship" : "Millennium Falcon", "hunters" : [ "Bobba Fett", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false }
+{ "_id" : ObjectId("60dcfda896f4f07e3fbc82b4"), "name" : "Rocket", "wantedFor" : "Stealing Batteries", "client" : "Ayesha High Priestess of the Sovereign", "reward" : 1000000000, "ship" : "The Milano", "hunters" : [ "Nebula", "Ravagers" ], "captured" : false }
+{ "_id" : ObjectId("60dcfda896f4f07e3fbc82b5"), "name" : "Sara Lance", "wantedFor" : "Screwing up the timeline, causing anachronisms", "client" : "Time Bureau", "reward" : 50000, "ship" : "Waverider", "hunters" : [ "Chronos" ], "captured" : false }
+{ "_id" : ObjectId("60dcfda896f4f07e3fbc82b6"), "name" : "Malcolm Reynolds", "wantedFor" : "Aiming to misbehave", "client" : "The Alliance", "reward" : 40000, "ship" : "Serenity", "hunters" : [ "Jubal Early" ], "captured" : false }
+{ "_id" : ObjectId("60dcfda896f4f07e3fbc82b7"), "name" : "Starbuck", "wantedFor" : "Disobeying Captain's orders", "client" : "Captain Adama", "ship" : "Demetrius", "reward" : 1000, "hunters" : [ "Apollo" ], "captured" : true }
+{ "_id" : ObjectId("60dd034596f4f07e3fbc82b8"), "name" : "Becky Boos", "wantedFor" : "Spilling the tea", "client" : "Haters", "reward" : 500000, "ship" : "Ford Escape", "hunters" : [ "Beliebers", "Beyhive", "Devil" ], "captured" : false }
+> db.bounties.distinct("name")
+[
+	"Becky Boos",
+	"Han Solo",
+	"Malcolm Reynolds",
+	"Rocket",
+	"Sara Lance",
+	"Starbuck"
+]
+> db.bounties.find({}, {name:1})
+{ "_id" : ObjectId("60dcfd3e96f4f07e3fbc82b3"), "name" : "Han Solo" }
+{ "_id" : ObjectId("60dcfda896f4f07e3fbc82b4"), "name" : "Rocket" }
+{ "_id" : ObjectId("60dcfda896f4f07e3fbc82b5"), "name" : "Sara Lance" }
+{ "_id" : ObjectId("60dcfda896f4f07e3fbc82b6"), "name" : "Malcolm Reynolds" }
+{ "_id" : ObjectId("60dcfda896f4f07e3fbc82b7"), "name" : "Starbuck" }
+{ "_id" : ObjectId("60dd034596f4f07e3fbc82b8"), "name" : "Becky Boos" }
+> db.bounties.remove({name: "Starbuck"})
+WriteResult({ "nRemoved" : 1 })
+> db.bounties.insert(
+...   {
+...     name: 'Han Solo',
+...     wantedFor : 'Owing money',
+...     client : 'Jabba the Hut',
+...     reward : 1000000,
+...     ship: 'Millennium Falcon',
+...     hunters :['Bobba Fett', 'Dengar', 'IG-88', 'Zuckuss', 'Greedo', 'Bossk', '4-LOM'],
+...     captured: false
+...   }
+...   )
+WriteResult({ "nInserted" : 1 })
+> db.bounties.find()
+{ "_id" : ObjectId("60dcfd3e96f4f07e3fbc82b3"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 1000000, "ship" : "Millennium Falcon", "hunters" : [ "Bobba Fett", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false }
+{ "_id" : ObjectId("60dcfda896f4f07e3fbc82b4"), "name" : "Rocket", "wantedFor" : "Stealing Batteries", "client" : "Ayesha High Priestess of the Sovereign", "reward" : 1000000000, "ship" : "The Milano", "hunters" : [ "Nebula", "Ravagers" ], "captured" : false }
+{ "_id" : ObjectId("60dcfda896f4f07e3fbc82b5"), "name" : "Sara Lance", "wantedFor" : "Screwing up the timeline, causing anachronisms", "client" : "Time Bureau", "reward" : 50000, "ship" : "Waverider", "hunters" : [ "Chronos" ], "captured" : false }
+{ "_id" : ObjectId("60dcfda896f4f07e3fbc82b6"), "name" : "Malcolm Reynolds", "wantedFor" : "Aiming to misbehave", "client" : "The Alliance", "reward" : 40000, "ship" : "Serenity", "hunters" : [ "Jubal Early" ], "captured" : false }
+{ "_id" : ObjectId("60dd034596f4f07e3fbc82b8"), "name" : "Becky Boos", "wantedFor" : "Spilling the tea", "client" : "Haters", "reward" : 500000, "ship" : "Ford Escape", "hunters" : [ "Beliebers", "Beyhive", "Devil" ], "captured" : false }
+{ "_id" : ObjectId("60ddeb9d96f4f07e3fbc82b9"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 1000000, "ship" : "Millennium Falcon", "hunters" : [ "Bobba Fett", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false }
+> db.bounties.remove({name: "Han Solo"}, {justOne: true})
+WriteResult({ "nRemoved" : 1 })
+> db.bounties.update({name: 'Sara Lance'}, {$set: {name: 'White Canary'}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.bounties.find({name: "White Canary'})
+uncaught exception: SyntaxError: "" literal not terminated before end of script :
+@(shell):1:40
+> db.bounties.find({name: "White Canary"})
+{ "_id" : ObjectId("60dcfda896f4f07e3fbc82b5"), "name" : "White Canary", "wantedFor" : "Screwing up the timeline, causing anachronisms", "client" : "Time Bureau", "reward" : 50000, "ship" : "Waverider", "hunters" : [ "Chronos" ], "captured" : false }
+> db.update({name: 'Rocket'}, {$set: {ship: 'The Milano 2'}})
+uncaught exception: TypeError: db.update is not a function :
+@(shell):1:1
+> db.bounties.update({name: "Rocket"}, {$set: {ship: "The Milano 2"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.bounties.find({name: "Rocket"}).pretty()
+{
+	"_id" : ObjectId("60dcfda896f4f07e3fbc82b4"),
+	"name" : "Rocket",
+	"wantedFor" : "Stealing Batteries",
+	"client" : "Ayesha High Priestess of the Sovereign",
+	"reward" : 1000000000,
+	"ship" : "The Milano 2",
+	"hunters" : [
+		"Nebula",
+		"Ravagers"
+	],
+	"captured" : false
+}
