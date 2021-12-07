@@ -1,1 +1,265 @@
-Please replace this text with ~50 lines of terminal history.
+use hunters
+switched to db hunters
+> db.createCollection('bounties')
+{ "ok" : 1 }
+> 
+> db.bounties.insert(
+...   {
+...     name: 'Han Solo',
+...     wantedFor : 'Owing money',
+...     client : 'Jabba the Hut',
+...     reward : 1000000,
+...     ship: 'Millennium Falcon',
+...     hunters :['Bobba Fett', 'Dengar', 'IG-88', 'Zuckuss', 'Greedo', 'Bossk', '4-LOM'],
+...     captured: false
+...   }
+...   )
+WriteResult({ "nInserted" : 1 })
+> db.bounties.insert({ name: 'Biden', wantedFor: 'President', client: 'China', reward: 2000000, ship: 'Air Force One', hunters: ['Allen', 'Jared', IG-99']' captured: false})
+... db.bounties.insert(   {     name: 'Han Solo',     wantedFor : 'Owing money',     client : 'Jabba the Hut',     reward : 1000000,     ship: 'Millennium Falcon',     hunters :['Bobba Fett', 'Dengar', 'IG-88', 'Zuckuss', 'Greedo', 'Bossk', '4-LOM'], captured: false})
+... ^C
+
+> db.bounties.insert(
+...   {
+...     name: 'Han Solo',
+...     wantedFor : 'Owing money',
+...     client : 'Jabba the Hut',
+...     reward : 1000000,
+...     ship: 'Millennium Falcon',
+...     hunters :['Bobba Fett', 'Dengar', 'IG-88', 'Zuckuss', 'Greedo', 'Bossk', '4-LOM'],
+...     captured: false
+...   }
+...   )
+WriteResult({ "nInserted" : 1 })
+> db.bounties.insert([
+...   {
+...     name: 'Han Solo',
+...     wantedFor : 'Owing money',
+...     client : 'Jabba the Hut',
+...     reward : 1000000,
+...     ship: 'Millennium Falcon',
+...     hunters :['Bobba Fett', 'Dengar', 'IG-88', 'Zuckuss', 'Greedo', 'Bossk', '4-LOM'],
+...     captured: false
+...   },
+...   {
+...     name: 'Rocket',
+...     wantedFor : 'Stealing Batteries',
+...     client : 'Ayesha High Priestess of the Sovereign',
+...     reward : 1000000000,
+...     ship: 'The Milano',
+...     hunters :['Nebula', 'Ravagers'],
+...     captured: false
+...   },
+...   {
+...     name: 'Sara Lance',
+...     wantedFor : 'Screwing up the timeline, causing anachronisms',
+...     client : 'Time Bureau',
+...     reward : 50000,
+...     ship: 'Waverider',
+...     hunters :['Chronos'],
+...     captured: false
+...   },
+...   {
+...     name: 'Malcolm Reynolds',
+...     wantedFor : 'Aiming to misbehave',
+...     client : 'The Alliance',
+...     reward : 40000,
+...     ship: 'Serenity',
+...     hunters :['Jubal Early'],
+...     captured: false
+...   },
+...   {
+...     name: 'Starbuck',
+...     wantedFor : "Disobeying Captain's orders",
+...     client : 'Captain Adama',
+...     ship: 'Demetrius',
+...     reward : 1000,
+...     hunters :['Apollo'],
+...     captured: true
+...   }
+... ])
+BulkWriteResult({
+	"writeErrors" : [ ],
+	"writeConcernErrors" : [ ],
+	"nInserted" : 5,
+	"nUpserted" : 0,
+	"nMatched" : 0,
+	"nModified" : 0,
+	"nRemoved" : 0,
+	"upserted" : [ ]
+})
+> db.bounties.find()
+{ "_id" : ObjectId("61afaab724cf7528abe7982c"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 1000000, "ship" : "Millennium Falcon", "hunters" : [ "Bobba Fett", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false }
+{ "_id" : ObjectId("61afabff24cf7528abe7982d"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 1000000, "ship" : "Millennium Falcon", "hunters" : [ "Bobba Fett", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false }
+{ "_id" : ObjectId("61afac1124cf7528abe7982e"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 1000000, "ship" : "Millennium Falcon", "hunters" : [ "Bobba Fett", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false }
+{ "_id" : ObjectId("61afac1124cf7528abe7982f"), "name" : "Rocket", "wantedFor" : "Stealing Batteries", "client" : "Ayesha High Priestess of the Sovereign", "reward" : 1000000000, "ship" : "The Milano", "hunters" : [ "Nebula", "Ravagers" ], "captured" : false }
+{ "_id" : ObjectId("61afac1124cf7528abe79830"), "name" : "Sara Lance", "wantedFor" : "Screwing up the timeline, causing anachronisms", "client" : "Time Bureau", "reward" : 50000, "ship" : "Waverider", "hunters" : [ "Chronos" ], "captured" : false }
+{ "_id" : ObjectId("61afac1124cf7528abe79831"), "name" : "Malcolm Reynolds", "wantedFor" : "Aiming to misbehave", "client" : "The Alliance", "reward" : 40000, "ship" : "Serenity", "hunters" : [ "Jubal Early" ], "captured" : false }
+{ "_id" : ObjectId("61afac1124cf7528abe79832"), "name" : "Starbuck", "wantedFor" : "Disobeying Captain's orders", "client" : "Captain Adama", "ship" : "Demetrius", "reward" : 1000, "hunters" : [ "Apollo" ], "captured" : true }
+> db.bounties.find({client: 'Time Bureau'})
+{ "_id" : ObjectId("61afac1124cf7528abe79830"), "name" : "Sara Lance", "wantedFor" : "Screwing up the timeline, causing anachronisms", "client" : "Time Bureau", "reward" : 50000, "ship" : "Waverider", "hunters" : [ "Chronos" ], "captured" : false }
+> db.bounties.find({captured: true})
+{ "_id" : ObjectId("61afac1124cf7528abe79832"), "name" : "Starbuck", "wantedFor" : "Disobeying Captain's orders", "client" : "Captain Adama", "ship" : "Demetrius", "reward" : 1000, "hunters" : [ "Apollo" ], "captured" : true }
+> db.bounties.find({name: 'Sara Lance'})
+{ "_id" : ObjectId("61afac1124cf7528abe79830"), "name" : "Sara Lance", "wantedFor" : "Screwing up the timeline, causing anachronisms", "client" : "Time Bureau", "reward" : 50000, "ship" : "Waverider", "hunters" : [ "Chronos" ], "captured" : false }
+> db.bouties.find{{ name:{ $all: [ ] }}
+... ^C
+
+> db.bounties.find({},{'name':1})
+{ "_id" : ObjectId("61afaab724cf7528abe7982c"), "name" : "Han Solo" }
+{ "_id" : ObjectId("61afabff24cf7528abe7982d"), "name" : "Han Solo" }
+{ "_id" : ObjectId("61afac1124cf7528abe7982e"), "name" : "Han Solo" }
+{ "_id" : ObjectId("61afac1124cf7528abe7982f"), "name" : "Rocket" }
+{ "_id" : ObjectId("61afac1124cf7528abe79830"), "name" : "Sara Lance" }
+{ "_id" : ObjectId("61afac1124cf7528abe79831"), "name" : "Malcolm Reynolds" }
+{ "_id" : ObjectId("61afac1124cf7528abe79832"), "name" : "Starbuck" }
+> db.bounties.remove({name:'Starbuck'})
+WriteResult({ "nRemoved" : 1 })
+> db.bounties.remove({_id:ObjectId("61afac1124cf7528abe7982e")})
+WriteResult({ "nRemoved" : 1 })
+> db.bounties.update({name:'Sara Lance'}, {$set: {name:'White Canary'}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.bounties.update({name:'Rocket'}, {$set: {name:'The Milano 2'}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.bounties.find({reward:{$gt: 100000}})
+{ "_id" : ObjectId("61afaab724cf7528abe7982c"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 1000000, "ship" : "Millennium Falcon", "hunters" : [ "Bobba Fett", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false }
+{ "_id" : ObjectId("61afabff24cf7528abe7982d"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 1000000, "ship" : "Millennium Falcon", "hunters" : [ "Bobba Fett", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false }
+{ "_id" : ObjectId("61afac1124cf7528abe7982f"), "name" : "The Milano 2", "wantedFor" : "Stealing Batteries", "client" : "Ayesha High Priestess of the Sovereign", "reward" : 1000000000, "ship" : "The Milano", "hunters" : [ "Nebula", "Ravagers" ], "captured" : false }
+> db.bounties.find({reward:{$lt: 1000}})
+> db.bounties.find({reward:{$lte: 1000}})
+> db.bounties.find({hunters: 'Nebula'})
+{ "_id" : ObjectId("61afac1124cf7528abe7982f"), "name" : "The Milano 2", "wantedFor" : "Stealing Batteries", "client" : "Ayesha High Priestess of the Sovereign", "reward" : 1000000000, "ship" : "The Milano", "hunters" : [ "Nebula", "Ravagers" ], "captured" : false }
+> db.bounties.find({$or:[{ship:'Waverider'},{ship:'Serenity'}]})
+{ "_id" : ObjectId("61afac1124cf7528abe79830"), "name" : "White Canary", "wantedFor" : "Screwing up the timeline, causing anachronisms", "client" : "Time Bureau", "reward" : 50000, "ship" : "Waverider", "hunters" : [ "Chronos" ], "captured" : false }
+{ "_id" : ObjectId("61afac1124cf7528abe79831"), "name" : "Malcolm Reynolds", "wantedFor" : "Aiming to misbehave", "client" : "The Alliance", "reward" : 40000, "ship" : "Serenity", "hunters" : [ "Jubal Early" ], "captured" : false }
+> db.bounties.find({$and:[{captured:false},{client:'Ayesha High Priestess of the Sovereign'}]})
+{ "_id" : ObjectId("61afac1124cf7528abe7982f"), "name" : "The Milano 2", "wantedFor" : "Stealing Batteries", "client" : "Ayesha High Priestess of the Sovereign", "reward" : 1000000000, "ship" : "The Milano", "hunters" : [ "Nebula", "Ravagers" ], "captured" : false }
+> db.bounties.find({captured:false,client:'Ayesha High Priestess of the Sovereign'})
+{ "_id" : ObjectId("61afac1124cf7528abe7982f"), "name" : "The Milano 2", "wantedFor" : "Stealing Batteries", "client" : "Ayesha High Priestess of the Sovereign", "reward" : 1000000000, "ship" : "The Milano", "hunters" : [ "Nebula", "Ravagers" ], "captured" : false }
+> db.bounties.update({},{$inc:{reward:333333}},{multi:true})
+WriteResult({ "nMatched" : 5, "nUpserted" : 0, "nModified" : 5 })
+> > db.bounties.update({},{$inc:{reward:333333}},{multi:true})
+uncaught exception: SyntaxError: expected expression, got '>' :
+@(shell):1:0
+> > db.bounties.update({},{$inc:{reward:333333}},{multi:true})
+uncaught exception: SyntaxError: expected expression, got '>' :
+@(shell):1:0
+> db.bounties.update({},{$inc:{reward:333333}},{multi:true})
+WriteResult({ "nMatched" : 5, "nUpserted" : 0, "nModified" : 5 })
+> db.bounties.update({},{$mul:{reward:2}},{multi:true})
+WriteResult({ "nMatched" : 5, "nUpserted" : 0, "nModified" : 5 })
+> db.bounties.update({name: 'Malcolm Reynolds'},{$push:{hunters:'Bobba Fett'}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.bounties.update({ship: 'Waverider'},{$push:{hunters:'Bobba Fett'}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.bounties.update({hunters:'Dengar'},{$pop:new{hunters:'Dengar'}})
+uncaught exception: TypeError: ({hunters:"Dengar"}) is not a constructor :
+@(shell):1:45
+> db.bounties.update({hunters:'Dengar'},{$pop:{hunters:'Dengar'}})
+WriteResult({
+	"nMatched" : 0,
+	"nUpserted" : 0,
+	"nModified" : 0,
+	"writeError" : {
+		"code" : 9,
+		"errmsg" : "Expected a number in: hunters: \"Dengar\""
+	}
+})
+> db.bounties.find({hunters: 'Dengar'})
+{ "_id" : ObjectId("61afaab724cf7528abe7982c"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 3333332, "ship" : "Millennium Falcon", "hunters" : [ "Bobba Fett", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false }
+{ "_id" : ObjectId("61afabff24cf7528abe7982d"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 3333332, "ship" : "Millennium Falcon", "hunters" : [ "Bobba Fett", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false }
+> db.bounties.update({hunters:'Dengar'},{$pull:{hunters:'Dengar'}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.bounties.find({hunters: 'Zuckuss'})
+{ "_id" : ObjectId("61afaab724cf7528abe7982c"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 3333332, "ship" : "Millennium Falcon", "hunters" : [ "Bobba Fett", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false }
+{ "_id" : ObjectId("61afabff24cf7528abe7982d"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 3333332, "ship" : "Millennium Falcon", "hunters" : [ "Bobba Fett", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false }
+> db.bounties.update({name: 'Han Solo'}, {$set:{lastSeen: 'yesterday'}},{upsert:true})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.bounties.update({name:{$ne:'Han Solo'}}, {$set:{lastSeen: 'yesterday'}},{upsert:true}, {multi: true})
+uncaught exception: Error: Fourth argument must be empty when specifying upsert and multi with an object. :
+DBCollection.prototype._parseUpdate@src/mongo/shell/collection.js:472:19
+DBCollection.prototype.update@src/mongo/shell/collection.js:510:18
+@(shell):1:1
+> db.bounties.updateMany({name:{$ne:'Han Solo'}}, {$set:{lastSeen: 'lastSeen'}},{upsert:true}) 
+{ "acknowledged" : true, "matchedCount" : 3, "modifiedCount" : 3 }
+> db.bouties.find()
+> db.bounties.find()
+{ "_id" : ObjectId("61afaab724cf7528abe7982c"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 3333332, "ship" : "Millennium Falcon", "hunters" : [ "Bobba Fett", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false, "lastSeen" : "yesterday" }
+{ "_id" : ObjectId("61afabff24cf7528abe7982d"), "name" : "Han Solo", "wantedFor" : "Owing money", "client" : "Jabba the Hut", "reward" : 3333332, "ship" : "Millennium Falcon", "hunters" : [ "Bobba Fett", "Dengar", "IG-88", "Zuckuss", "Greedo", "Bossk", "4-LOM" ], "captured" : false }
+{ "_id" : ObjectId("61afac1124cf7528abe7982f"), "name" : "The Milano 2", "wantedFor" : "Stealing Batteries", "client" : "Ayesha High Priestess of the Sovereign", "reward" : 2001333332, "ship" : "The Milano", "hunters" : [ "Nebula", "Ravagers" ], "captured" : false, "lastSeen" : "lastSeen" }
+{ "_id" : ObjectId("61afac1124cf7528abe79830"), "name" : "White Canary", "wantedFor" : "Screwing up the timeline, causing anachronisms", "client" : "Time Bureau", "reward" : 1433332, "ship" : "Waverider", "hunters" : [ "Chronos", "Bobba Fett" ], "captured" : false, "lastSeen" : "lastSeen" }
+{ "_id" : ObjectId("61afac1124cf7528abe79831"), "name" : "Malcolm Reynolds", "wantedFor" : "Aiming to misbehave", "client" : "The Alliance", "reward" : 1413332, "ship" : "Serenity", "hunters" : [ "Jubal Early", "Bobba Fett" ], "captured" : false, "lastSeen" : "lastSeen" }
+> tail -50 ~/.dbshell
+uncaught exception: SyntaxError: unexpected token: '~' :
+@(shell):1:9
+> ^C
+bye
+Isaacs-MacBook-Pro:Mongo-Bounty-Hunters isaacnewman$ 
+Isaacs-MacBook-Pro:Mongo-Bounty-Hunters isaacnewman$ db.bounties.insert(
+-bash: syntax error near unexpected token `newline'
+Isaacs-MacBook-Pro:Mongo-Bounty-Hunters isaacnewman$   {
+>     name: 'Han Solo',
+>     wantedFor : 'Owing money',
+>     client : 'Jabba the Hut',
+>     reward : 1000000,
+>     ship: 'Millennium Falcon',
+>     hunters :['Bobba Fett', 'Dengar', 'IG-88', 'Zuckuss', 'Greedo', 'Bossk', '4-LOM'],
+>     captured: false
+>   }
+-bash: name:: command not found
+-bash: wantedFor: command not found
+-bash: client: command not found
+-bash: reward: command not found
+-bash: ship:: command not found
+-bash: hunters: command not found
+-bash: captured:: command not found
+Isaacs-MacBook-Pro:Mongo-Bounty-Hunters isaacnewman$   )
+-bash: syntax error near unexpected token `)'
+Isaacs-MacBook-Pro:Mongo-Bounty-Hunters isaacnewman$ tail -50 ~/.dbshell
+db.people.find().sort({name: 1})
+db.people.remove( { age: { $lt: 33 } } )
+db.people.find().sort({name: 1})
+db.people.insert({name: "Emma", age: 30})
+db.people.find().sort({name: 1})
+db.people.insert({     name: "Manny",     age: 33,     contacts: [       {         type: "email",         contact: "manny@domain.com"       },       {         type: "mobile",         contact: "(555) 555-5555"       }     ]})
+db.people.find().sort({name: 1})
+db.bankAccounts.insert({   amount: 4403 })
+db.people.insert({     name: "Miguel",     age: 46,     bankAccount: db.bankAccounts.findOne()._id })
+db.bankAccounts.find()
+db.people.find({name:"Miguel"})
+show collections
+show fields
+use hunters
+db.createCollection('bounties')
+db.bounties.insert(   {     name: 'Han Solo',     wantedFor : 'Owing money',     client : 'Jabba the Hut',     reward : 1000000,     ship: 'Millennium Falcon',     hunters :['Bobba Fett', 'Dengar', 'IG-88', 'Zuckuss', 'Greedo', 'Bossk', '4-LOM'],     captured: false   }   )
+db.bounties.insert([   {     name: 'Han Solo',     wantedFor : 'Owing money',     client : 'Jabba the Hut',     reward : 1000000,     ship: 'Millennium Falcon',     hunters :['Bobba Fett', 'Dengar', 'IG-88', 'Zuckuss', 'Greedo', 'Bossk', '4-LOM'],     captured: false   },   {     name: 'Rocket',     wantedFor : 'Stealing Batteries',     client : 'Ayesha High Priestess of the Sovereign',     reward : 1000000000,     ship: 'The Milano',     hunters :['Nebula', 'Ravagers'],     captured: false   },   {     name: 'Sara Lance',     wantedFor : 'Screwing up the timeline, causing anachronisms',     client : 'Time Bureau',     reward : 50000,     ship: 'Waverider',     hunters :['Chronos'],     captured: false   },   {     name: 'Malcolm Reynolds',     wantedFor : 'Aiming to misbehave',     client : 'The Alliance',     reward : 40000,     ship: 'Serenity',     hunters :['Jubal Early'],     captured: false   },   {     name: 'Starbuck',     wantedFor : "Disobeying Captain's orders",     client : 'Captain Adama',     ship: 'Demetrius',     reward : 1000,     hunters :['Apollo'],     captured: true   } ])
+db.bounties.find()
+db.bounties.find({client: 'Time Bureau'})
+db.bounties.find({captured: true})
+db.bounties.find({name: 'Sara Lance'})
+db.bounties.find({},{'name':1})
+db.bounties.remove({name:'Starbuck'})
+db.bounties.remove({_id:ObjectId("61afac1124cf7528abe7982e")})
+db.bounties.update({name:'Sara Lance'}, {$set: {name:'White Canary'}})
+db.bounties.update({name:'Rocket'}, {$set: {name:'The Milano 2'}})
+db.bounties.find({reward:{$gt: 100000}})
+db.bounties.find({reward:{$lt: 1000}})
+db.bounties.find({reward:{$lte: 1000}})
+db.bounties.find({hunters: 'Nebula'})
+db.bounties.find({$or:[{ship:'Waverider'},{ship:'Serenity'}]})
+db.bounties.find({$and:[{captured:false},{client:'Ayesha High Priestess of the Sovereign'}]})
+db.bounties.find({captured:false,client:'Ayesha High Priestess of the Sovereign'})
+db.bounties.update({},{$inc:{reward:333333}},{multi:true})
+> db.bounties.update({},{$inc:{reward:333333}},{multi:true})
+db.bounties.update({},{$inc:{reward:333333}},{multi:true})
+db.bounties.update({},{$mul:{reward:2}},{multi:true})
+db.bounties.update({name: 'Malcolm Reynolds'},{$push:{hunters:'Bobba Fett'}})
+db.bounties.update({ship: 'Waverider'},{$push:{hunters:'Bobba Fett'}})
+db.bounties.update({hunters:'Dengar'},{$pop:new{hunters:'Dengar'}})
+db.bounties.update({hunters:'Dengar'},{$pop:{hunters:'Dengar'}})
+db.bounties.find({hunters: 'Dengar'})
+db.bounties.update({hunters:'Dengar'},{$pull:{hunters:'Dengar'}})
+db.bounties.find({hunters: 'Zuckuss'})
+db.bounties.update({name: 'Han Solo'}, {$set:{lastSeen: 'yesterday'}},{upsert:true})
+db.bounties.update({name:{$ne:'Han Solo'}}, {$set:{lastSeen: 'yesterday'}},{upsert:true}, {multi: true})
+db.bounties.updateMany({name:{$ne:'Han Solo'}}, {$set:{lastSeen: 'lastWeek'}},{upsert:true})
