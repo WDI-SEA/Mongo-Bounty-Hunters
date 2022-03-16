@@ -1,75 +1,3 @@
-\l
-\ls
-show dbs;
-show dbs;
-help
-db.help()
-help
-show collections
-show collections;
-show dbs
-show usesrs
-show users
-show profile
-use intro
-show dbs
-show collections
-db.people.insert({ name:"Norman", age:"38" })
-show dbs
-use local
-show collections
-use intro
-show collections
-show dbs
-db.people.fine({})
-db.people.find({})
-db.people.find({}).pretty()
-db.people.insert( [   {     "name": "Emma",     "age": 20   },   {     "name": "Ray",     "age": 45   },   {     "name": "Celeste",     "age": 33   },   {     "name": "Stacy",     "age": 53   },   {     "name": "Katie",     "age": 24   },   {     "name": "Adrian",     "age": 47   } ])
-show collections
-db.people.find({})
-db.people.find({}).pretty()
-db.people.find({age:24}).pretty()
-> db.people.update( { name: { $lt: "M" } }, { $inc: { age: 10 } }, { multi: true } )
-> db.people.update({name: "Adrian"}, {$set: { age: 99 } })
-db.people.update({name: "Adrian"}, {$set: { age: 99 } })
-db.people.update( { name: { $lt: "M" } }, { $inc: { age: 10 } }, { multi: true } )
-db.people.find({}).pretty()
-db.people.remove({})
-db.people.drop({})
-show dbs
-use intro
-show collections
-db.people.insert( [   {     "name": "Emma",     "age": 20   },   {     "name": "Ray",     "age": 45   },   {     "name": "Celeste",     "age": 33   },   {     "name": "Stacy",     "age": 53   },   {     "name": "Katie",     "age": 24   },   {     "name": "Adrian",     "age": 47   } ])
-db.peopel.find({}).pretty()
-db.people.find({}).pretty()
-> db.people.insert({     name: "Manny",     age: 33,     contacts: [       {         type: "email",         contact: "manny@domain.com"       },       {         type: "mobile",         contact: "(555) 555-5555"       }     ]})
-db.people.insert({     name: "Manny",     age: 33,     contacts: [       {         type: "email",         contact: "manny@domain.com"       },       {         type: "mobile",         contact: "(555) 555-5555"       }     ]})
-db.people.find({}).pretty()
-db.bankAccounts.insert({   amount: 4403 })
-show collections
-db.bankAccounts.find({})
-> db.people.insert({     name: "Miguel",     age: 46,     bankAccount: db.bankAccounts.findOne()._id })
-db.people.insert({     name: "Norman",     age: 25,     bankAccount: db.bankAccounts.findOne()._id })
-db.people.find({name: "Norman"})
-db.people.find({name: "Norman"}).pretty()
-db.people.find({name: "Norman"}).bankAccount()
-db.people.find({name: "Norman"}).bankAccount
-db.people.find({name: "Norman"}).age
-db.people.find({}).pretty()
-seedDb.js
-use Intro
-db.employees.insert([     {         name: 'Jason',         salary: 1000000,         loves: 'hiking'     },     {         name: 'Weston',         salary: 1000000,         loves: 'relational data'     },     {         name: 'April',         salary: 1000000,         loves: 'the show Abbot elementary'     } ])
-show collections
-use intro
-db.employees.insert([     {         name: 'Jason',         salary: 1000000,         loves: 'hiking'     },     {         name: 'Weston',         salary: 1000000,         loves: 'relational data'     },     {         name: 'April',         salary: 1000000,         loves: 'the show Abbot elementary'     } ])
-show collections
-use employees
-db.employees.find({})
-db.employees.find({}).pretty()
-show collections
-use intro
-show collections
-db.employees.find({}).pretty()
 use hunters
 db.createCollection('bounties')
 db.bounties.insert(   {     name: 'Han Solo',     wantedFor : 'Owing money',     client : 'Jabba the Hut',     reward : 1000000,     ship: 'Millennium Falcon',     hunters :['Bobba Fett', 'Dengar', 'IG-88', 'Zuckuss', 'Greedo', 'Bossk', '4-LOM'],     captured: false   }   )
@@ -121,9 +49,9 @@ clear
 db.bounties.find({}).pretty()
 db.bounties.update({hunters: 'Dengar'},{$pull: {hunters: 'Dengar'}})
 db.bounties.find({}).pretty()
-db.bounties.update({ name: 'Han Solo' }, {   $set: {     lastSeen: 'yesterday'     }   }, {     upsert : true   } )
+db.bounties.update({ name: 'Han Solo' }, {$set: {lastSeen: 'yesterday'}   }, {upsert : true} )
 db.bounties.find({}).pretty()
-db.bounties.updateMany({ name: {   $not:{     $eq: 'Han Solo'   } } }, {   $set: {     lastSeen: 'last week'     }   }, {     upsert : true   } )
-db.bounties.updateMany({ "name": { $ne: "Han Solo" }  }, {     $set: { lastSeen: 'last week' }      } )
+db.bounties.updateMany({ name: {$not:{$eq: 'Han Solo'}}}, {$set: {lastSeen: 'last week'}   }, {upsert : true} )
+db.bounties.updateMany({ "name": { $ne: "Han Solo"}}, {$set: { lastSeen: 'last week' }})
 db.bounties.find({}).pretty()
 cat ~/.dbshell > answers.txt
