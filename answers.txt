@@ -1,1 +1,26 @@
 Please replace this text with ~50 lines of terminal history.
+READ/ QUERY
+1. db.bounties.find().pretty()
+2. db.bounties.find({name: "Time Bureau"}).pretty()
+3. db.bounties.find({captured: true}).pretty()
+4. db.bounties.find({}).sort({_id:-1}).limit(1).pretty()
+5. db.bounties.find({}, {name: 1}).pretty()
+
+
+REMOVE
+1. db.bounties.remove({name: "Starbuck"}).pretty()
+2. db.bounties.deleteOne({name: "Han Solo"})
+
+UPDATE
+1. db.bounties.update({name: "Sara Lance"}, {$set: {name: "White Canary"}})
+2.  db.bounties.update({ship: "The Milano"}, {$set: {name: "The Milano 2"}})
+
+//INTERMEDIATE
+1. db.bounties.find({reward: {$gt: 100000}})
+2. db.bounties.find({reward: {$lt: 1000}})
+3. db.bounties.find({reward: {$lte: 1000}})
+4. db.bounties.find({hunters: "Nebula"})
+5. db.bounties.find( {$or: [{ship: "Waverider"}, {ship: "Serenity"}]}).pretty()
+6. db.bounties.find( {$or: [{captured: false}, {client: "Ayesha High Priestess of the Sovereign"}]}).pretty()
+7. db.bounties.updateMany({reward: {$add: 333333 }}) //this is wrong 
+8. 
