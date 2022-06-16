@@ -283,7 +283,7 @@ db.bounties.update({
 ```javascript
 db.bounties.updateMany({
   $pull: {
-    hunters: ['Dengar']
+    hunters: 'Dengar'
     }
   }
 )
