@@ -50,7 +50,7 @@ Let's add our first bounty
 
 ```js
 
-db.bounties.insert(
+db.bounties.insertOne(
   {
     name: 'Han Solo',
     wantedFor : 'Owing money',
@@ -60,7 +60,7 @@ db.bounties.insert(
     hunters :['Bobba Fett', 'Dengar', 'IG-88', 'Zuckuss', 'Greedo', 'Bossk', '4-LOM'],
     captured: false
   }
-  )
+ )
 ```
 
 You should get an ok message that looks similar to this:
@@ -73,7 +73,7 @@ Now insert a few more bounties
 
 ```js
 
-db.bounties.insert([
+db.bounties.insertMany([
   {
     name: 'Han Solo',
     wantedFor : 'Owing money',
