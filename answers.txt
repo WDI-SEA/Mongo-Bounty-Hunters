@@ -1,1 +1,15 @@
-Please replace this text with ~50 lines of terminal history.
+
+Read/Query
+
+db.bounties.find({})
+db.bounties.find({ client: "Time Bureau" })
+db.bounties.find({ captured: true })
+db.bounties.find({ _id: ObjectId("63cb30095148e5e5c7b43b2f") })
+db.bounties.find({}, { 'name:' 1, '_id': 0})
+
+Remove 
+db.bounties.deleteOne({ name: 'Starbuck' })
+db.bounties.deleteOne({ name: 'Han Solo' })
+
+Update
+
