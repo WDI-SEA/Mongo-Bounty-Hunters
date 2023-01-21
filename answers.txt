@@ -1,1 +1,68 @@
-Please replace this text with ~50 lines of terminal history.
+hunters> db.bounties.find({})
+[
+  {
+    _id: ObjectId("63cb2f9cd786da1d86b6e9ce"),
+    name: 'Han Solo',
+    wantedFor: 'Owing money',
+    client: 'Jabba the Hut',
+    reward: 2666666,
+    ship: 'Millennium Falcon',
+    hunters: [
+      'Bobba Fett',
+      'Dengar',
+      'IG-88',
+      'Zuckuss',
+      'Greedo',
+      'Bossk',
+      '4-LOM'
+    ],
+    captured: false,
+    lastSeen: 'yesterday'
+  },
+  {
+    _id: ObjectId("63cb2f9cd786da1d86b6e9cf"),
+    name: 'Rocket',
+    wantedFor: 'Stealing Batteries',
+    client: 'Ayesha High Priestess of the Sovereign',
+    reward: 2000666666,
+    ship: 'The Milano 2',
+    hunters: [ 'Nebula', 'Ravagers' ],
+    captured: false,
+    lastSeen: 'last week'
+  },
+  {
+    _id: ObjectId("63cb2f9cd786da1d86b6e9d0"),
+    name: 'White Canary',
+    wantedFor: 'Screwing up the timeline, causing anachronisms',
+    client: 'Time Bureau',
+    reward: 766666,
+    ship: 'Waverider',
+    hunters: [ 'Chronos', 'Bobba Fett' ],
+    captured: false,
+    lastSeen: 'last week'
+  },
+  {
+    _id: ObjectId("63cb2f9cd786da1d86b6e9d1"),
+    name: 'Malcolm Reynolds',
+    wantedFor: 'Aiming to misbehave',
+    client: 'The Alliance',
+    reward: 746666,
+    ship: 'Serenity',
+    hunters: [ 'Bobba Fett', 'Jubal Early' ],
+    captured: false,
+    lastSeen: 'last week'
+  },
+  {
+    _id: ObjectId("63cb3301d786da1d86b6e9d3"),
+    name: 'Eric Nguyen',
+    wantedFor: 'Blasphemy against LOTR',
+    client: 'People with Good Movie Taste',
+    ship: 'UNSC Infinity',
+    reward: 2666666,
+    hunters: [ 'Tyler Benbrook', 'Sean Clemson', 'Josh Wu' ],
+    captured: false,
+    lastSeen: 'last week'
+  }
+]
+
+
