@@ -13,3 +13,21 @@ db.bounties.deleteOne({ name: 'Han Solo' })
 
 Update
 
+db.bounties.updateOne({name:"Sara Lance"}, {$set: {name: "White Canary"}})
+db.bounties.updateOne({name:"Rocket"}, {$set: {ship: "The Milano 2"}})
+
+Intermediate Mongo
+
+db.bounties.find({reward: {$gt: 100000}})
+db.bounties.find({reward: {$lt: 1000}})
+db.bounties.find({reward: {$lte: 1000}})
+db.bounties.find({hunters: "Nebula"})
+db.bounties.find({$or: [{ship: "Waverider"}, {ship: "Serenity"}]})
+db.bounties.find({$and: [{captured: false}, {client: "Ayesha High Priestess of the Sovereign"}]})
+db.bounties.updateMany({}, {$inc: {reward: 333333}})
+db.bounties.updateMany({}, {$mul: {reward: 2}})
+db.bounties.updateOne({name: "Malcolm Reynolds"}, {$addToSet: {hunters: "Boba Fett"}})
+db.bounties.updateOne({ship: "Waverider"}, {$addToSet: {hunters: "Boba Fett"}})
+db.bounties.updateOne({name: "Han Solo"}, {$pull: {hunters: "Dengar"}})
+db.bounties.updateOne({name: "Han Solo"}, {$set: {lastSeen: "yesterday"}},{upsert: true})
+db.bounties.updateMany({name: {$ne: "Han Solo"}}, {$set: {lastSeen: "last week"}},{upsert: true})
