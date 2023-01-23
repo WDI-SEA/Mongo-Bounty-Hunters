@@ -1,6 +1,6 @@
 Please replace this text with ~50 lines of terminal history.
 
-> db.bounties.find()
+> db.bounties.find({})
 
 > db.bounties.find({client: "Time Bureau”})
 
