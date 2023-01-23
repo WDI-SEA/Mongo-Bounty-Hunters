@@ -1,1 +1,51 @@
 Please replace this text with ~50 lines of terminal history.
+db.bounties.updateOne({name: 'Sara Lance'}, {$set: {name: 'White Canary'}})
+db.bounties.updateOne({name: 'Sara Lance'}, {$set {name: 'White Canary'}})
+db.bounties.deleteOne({name: 'Han Solo'})
+db.bounties.find({name: 'Rocket'})
+db.bounties.updateOne({name: 'Rocket'}, {$rename : {'two dollars': 'reward'}})
+db.bounties.updateOne({name: 'Rocket'}, {$rename : {'two dollars': reward}})
+db.bounties.find({name: 'Rocket'})
+db.bounties.updateOne({name: 'Rocket'}, {$rename : {reward: 'two dollars'}})
+db.bounties.find({name: 'Rocket'})
+db.bounties.updateOne({name: 'Rocket'}, {$set : {reward: 'two dollars'}})
+db.bounties.find({name: 'Rocket'})
+db.bounties.updateOne({name: 'Rocket'}, {$set: {ship: 'The 2'}})
+db.bounties.updateOne({name: 'Rocket'}, {$rename: {ship: 'The Milano 2'}})
+db.bounties.updateOne({name: 'Rocket'}, {ship: 'The Milano 2'})
+db.bounties.deleteOne({name: 'Starbuck'})
+db.bounties.find({}, {name: 0, _id: 0})
+db.bounties.find({}, {name: 100, _id: 0})
+db.bounties.find({}, {name: 2, _id: 0})
+db.bounties.find({}, {name: 1})
+db.bounties.find({})
+db.bounties.find({limit: {name}})
+db.bounties.find({limit: name})
+db.bounties.find({ wantedFor: 'Owing money' })
+db.bounties.updateOne({ name: 'Lone Starr' }, {$set: { reward: 1000000 } } )
+db.bounties.find({ wantedFor: 'Owing money' })
+db.bounties.insertOne({ name: 'Lone Starr', wantedFor: 'Owing money', client: 'Pizza the Hutt', ship: 'his ship', enemies: ['Dark Helmet', 'President Skroob', 'Colonel Sandurz', 'Spaceballs', 'Pizza the Hutt', 'Vinnie', 'Sgt. Rico', 'Zircon', 'Snotty', 'Marlene and Charlene', 'Phillip Asshole', 'Major Asshole', 'The Assholes', 'Radar Technician', 'Kafka'], captured: false })
+db.bounties.insertOne({ name: 'Lone Starr', wantedFor: 'Owing money', client: 'Pizza the Hutt', ship: 'his ship', enemies: ['Dark Helmet', 'President Skroob', 'Colonel Sandurz', 'Spaceballs', 'Pizza the Hutt', 'Vinnie', 'Sgt. Rico', 'Zircon', 'Snotty', 'Marlene and Charlene', 'Phillip Asshole', 'Major Asshole', 'The Assholes', 'Radar Technician', 'Kafka'] captured: false
+... wantedFor: 'Owing money',
+db.bounties.insertOne({ ... name: 'Lone Starr',
+... wantedFor: 'Owing money',
+db.bounties.insertOne({ ... name: 'Lone Starr',
+db.bounties.insertOne({ name: 'Lone Starr', wantedFor: 'Owing money', client: 'Pizza the Hutt', ship: ship: 'his ship',
+db.bounties.find({ captured: true })
+db.bounties.find({ captured: 1 })
+db.bounties.find({ captured: (1+1=2) })
+db.bounties.find({ captured: 1+1=2 })
+db.bounties.find({ client: 'Time Bureau' })
+db.bounties.find({})
+db.bounties.findAll({})
+db.bounties.insertMany([ { name: 'Rocket', wantedFor: 'Stealing Batteries', client: 'Ayesha High Priestess of the Sovereign', reward: 1000000000, ship: 'The Milano', hunters: ['Nebula', 'Ravagers'], captured: false }, { name: 'Sara Lance', wantedFor: 'Screwing up the timeline, causing anachronisms', client: 'Time Bureau', reward: 50000, ship: 'Waverider', hunters: ['Chronos'], captured: false }, { name: 'Malcolm Reynolds', wantedFor: 'Aiming to misbehave', client: 'The Alliance', reward: 40000, ship: 'Serenity', hunters: ['Jubal Early'], captured: false }, { name: 'Starbuck', wantedFor: "Disobeying Captain's orders", client: 'Captain Adama', ship: 'Demetrius', reward: 1000, hunters: ['Apollo'], captured: true }])
+db.bounties.insertOne( { name: 'Han Solo', wantedFor: 'Owing money', client: 'Jabba the Hut', reward: 1000000, ship: 'Millennium Falcon', hunters: ['Bobba Fett', 'Dengar', 'IG-88', 'Zuckuss', 'Greedo', 'Bossk', '4-LOM'], captured: false })
+db.bounties.insertOne( { name: 'Han Solo', wantedFor: 'Owing money', client: 'Jabba the Hut', reward: 1000000, ship: 'Millennium Falcon', hunters: ['Bobba Fett', 'Dengar', 'IG-88', 'Zuckuss', 'Greedo', 'Bossk', '4-LOM'], captured: false })
+db.createCollection('bounties')
+db.createCollection
+show dbs
+show collections
+use hunters
+mongosh
+mongod
+show dbs%   
