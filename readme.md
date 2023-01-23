@@ -166,7 +166,7 @@ Check out the [Intermediate Mongo](https://gawdiseattle.gitbook.io/wdi/04-databa
 
 Put your terminal output (let's say the last 50 lines or so, not everything you ever did!) into the file in this directory called `answers.txt`. Commit and push your changes, then make a pull request against the base fork.
 
-Get your Mongo shell history with the following command: `tail -50 ~/.mongodb/mongosh/mongosh_repl_history`
+Get your Mongo shell history with the following command: `tail -50 ~/.mongodb/mongosh/mongosh_repl_history`. Older versions of the `mongo` shell might need to use `tail -50 ~/.dbshell`.
 
 Did you have any questions or comments about this deliverable? Please add it to the text of your pull request!
 
