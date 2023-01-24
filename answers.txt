@@ -1,1 +1,31 @@
 Please replace this text with ~50 lines of terminal history.
+Because I was using a shell that was in browser, it frequently shut down, and forced me to reset, resetting my terminal history. So I will just paste in each of the commands individually.
+
+1 db.bounties.insertOne()
+2. db.bounties.insertMany([])
+3. db.bounties.find({})
+4. db.bounties.find({client: 'Time Bureau'})
+5. db.bounties.find({captured: true})
+6. db.bounties.find({name: 1, _id: 0})
+7. db.bounties.deleteOne({name: "Starbuck"})
+8. db.bounties.deleteOne({name: "Han Solo"})
+9. db.bounties.updateOne({name: "Sra Lance"},{$set: {name: "White Canary"}})
+10. db.bounties.updateOne({ship: "The Milano"},{$set: {ship: "The Milano 2"}})
+11. db.bounties.find({reward: {$gt: 100000}})
+12. db.bounties.find({reward: {$lte: 1000}})
+13. db.bounties.find({ reward: { $lte: 1000 } })
+14. db.bounties.find({ hunters: "Nebula"})
+15. db.bounties.find({$or: [{ship: "Waverider"}, {ship: "Serenity"}]})
+16. db.bounties.find({$and: [{captured: false}, {client: "Ayesha High Priestess of the Sovereign"}]})
+17. db.bounties.updateMany({}, {$inc: {reward: 333333}})
+18. db.bounties.updateOne({}, {$mul: {reward: 2}})
+19. db.bounties.deleteOne({hunters: "Dengar"})
+20. db.bounties.updateOne(
+   {name: "Han Solo"}, 
+   {$set: {lastSeen: "yesterday"}}, 
+   {upsert: true}
+)
+21. db.bounties.updateMany({name: {$ne: "Han Solo"}},
+{$set: {lastSeen: "last week"}})
+
+
