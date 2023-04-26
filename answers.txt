@@ -1,1 +1,57 @@
 Please replace this text with ~50 lines of terminal history.
+
+- Do a query to see all the bounties
+db.bounties.find({})
+- Do a query to find the bounty whose client is `Time Bureau`
+
+db.bounties.findOne({ client: 'Time Bureau'})
+
+- Do a query to find the bounties who have been `captured`
+db.bounties.find({captured: true})
+
+- Do a query specific to the bounty you inserted
+
+- Do a query to just return the names of all the bounties
+
+db.bounties.find({}).forEach(name => console.log(name.name))
+
+
+----REMOVE------
+
+-Starbuck and the Captain have come to an understanding. Remove her record
+db.bounties.deleteOne({name:'Starbuck'})
+
+-find and remove the duplicate record - be sure to JUST remove the one copy
+db.bounties.deleteOne({name:'Han Solo'})
+
+---------UPDATE------
+db.bounties.updateOne({ name:'Sara Lance'}, {$set: {name:'White Canary'}})
+
+ db.bounties.updateOne({name:'Rocket'}, {$set: {ship:'The Milano 2'}})
+
+ db.bounties.find({reward: {$lt: 1000}})
+
+ db.bounties.find({reward: {$lte: 1000}})
+
+ db.bounties.findOne({hunters: 'Nebula'})
+
+ db.bounties.find({$or: [{ship: 'Waverider'}, {ship: 'Serenity'}]})
+
+ db.bounties.find({captured: false,client: 'Ayesha High Priestess of the Sovereign'})
+
+ db.bounties.updatMany({}, {$inc: {reward: 333333})
+
+ db.bounties.updateMany({}, {$mul: {reward: 2}})
+
+ db.bounties.updateOne({name: 'Malcom Reynolds'}, {$push: {hunters: 'Bobba Fett'}})
+
+ db.bounties.updateOne({ship: 'Waverider'}, {$push: {hunters: 'Bobba Fett'}})
+
+ db.bounties.updateMany({hunters:'Dengar'}, {$pull: {hunters: 'Dengar'}})
+
+ db.bounties.update({}, { $set: { lastseen: 'yesterday' }}, {upsert: true})
+
+ db.bounties.updateMany(
+...     { name: { $ne: "Han Solo" } },
+...     { $set: { lastSeen: "last week" } }
+... );
