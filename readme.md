@@ -157,7 +157,11 @@ Check out the [Intermediate Mongo](https://gawdiseattle.gitbook.io/wdi/04-databa
 - Add `Bobba Fett` as a hunter for `Malcolm Reynolds`
 - Add `Bobba Fett` as a hunter for the one that has the ship `Waverider`
 - Find and remove `Dengar` the bounty hunter
-- Upsert is used with update method which creates a new document if the query does not retrieve any documents matching the query parameters.
+
+## Upsert 
+
+upsert is used with update method which creates a new document if the query does not retrieve any documents matching the query parameters.
+
 - Try giving a `lastSeen` field to Han Solo, with the property `yesterday` (we haven't set his yet)
 - Try giving all bounties that are not Han Solo a new field of `lastSeen` - with a value of `last week`
 
