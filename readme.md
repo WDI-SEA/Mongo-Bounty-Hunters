@@ -127,7 +127,6 @@ db.bounties.insertMany([
 - Do a query to see all the bounties
 - Do a query to find the bounty whose client is `Time Bureau`
 - Do a query to find the bounties who have been `captured`
-- Do a query specific to the bounty you inserted
 - Do a query to just return the names of all the bounties
 
 ## Remove
